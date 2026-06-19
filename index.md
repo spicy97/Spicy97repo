@@ -11,8 +11,8 @@ permalink: /
 <section class="party-hero" aria-labelledby="hero-title">
 
   <!-- Floating balloon images -->
-  <img src="/assets/images/balloon-blue.png"   class="balloon balloon--left"  alt="" aria-hidden="true">
-  <img src="/assets/images/balloon-yellow.png" class="balloon balloon--right" alt="" aria-hidden="true">
+  <img src="{{ '/assets/images/balloon-blue.png' | relative_url }}"   class="balloon balloon--left"  alt="" aria-hidden="true">
+  <img src="{{ '/assets/images/balloon-yellow.png' | relative_url }}" class="balloon balloon--right" alt="" aria-hidden="true">
 
   <div class="party-hero__inner">
 
