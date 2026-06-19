@@ -7,140 +7,154 @@ permalink: /
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="container">
-    <span class="hero-eyebrow">🎉 Christ Central Buffalo Presents</span>
-    <h1 class="hero-title">3-Day Surprise Party VBS</h1>
-    <p class="hero-tagline">"Every day brings a new surprise, a new story, and a new reminder that God's love is for everyone."</p>
+<!-- ═══ PARTY HERO ═══ -->
+<section class="party-hero" aria-labelledby="hero-title">
 
-    <div class="hero-meta">
-      <span class="meta-item">📅 August 21–23, 2026</span>
-      <span class="meta-item">👧 Ages 4–12</span>
-      <span class="meta-item">💵 $5 per child</span>
-      <span class="meta-item">🍱 Lunch provided</span>
+  <!-- Floating balloon images -->
+  <img src="/assets/images/balloon-blue.png"   class="balloon balloon--left"  alt="" aria-hidden="true">
+  <img src="/assets/images/balloon-yellow.png" class="balloon balloon--right" alt="" aria-hidden="true">
+
+  <div class="party-hero__inner">
+
+    <!-- Top invite banner -->
+    <div class="invite-banner" aria-label="You're invited to">
+      <span class="invite-star" aria-hidden="true">★</span>
+      YOU'RE INVITED TO
+      <span class="invite-star" aria-hidden="true">★</span>
     </div>
 
-    <div class="hero-actions">
+    <!-- VBS wordmark -->
+    <div class="vbs-wordmark" aria-hidden="true">
+      <span class="vbs-v">V</span><span class="vbs-b">B</span><span class="vbs-s">S</span>
+    </div>
+
+    <!-- SURPRISE PARTY title -->
+    <h1 id="hero-title" class="surprise-title">
+      <span class="sp sp1">S</span><span class="sp sp2">U</span><span class="sp sp3">R</span><span class="sp sp4">P</span><span class="sp sp5">R</span><span class="sp sp6">I</span><span class="sp sp1">S</span><span class="sp sp3">E</span>
+    </h1>
+    <div class="party-title" aria-label="Party!">
+      <span class="pt pt1">P</span><span class="pt pt2">A</span><span class="pt pt3">R</span><span class="pt pt4">T</span><span class="pt pt5">Y</span><span class="pt pt6">!</span>
+    </div>
+
+    <!-- Teal tagline banner -->
+    <div class="tagline-banner">
+      <span class="tagline-heart" aria-hidden="true">❤️</span>
+      God's Love Is the Best Gift Ever!
+      <span class="tagline-heart" aria-hidden="true">❤️</span>
+    </div>
+
+    <!-- Register CTA -->
+    <div class="hero-cta-wrap">
       <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
-         class="btn btn-primary"
+         class="btn btn-party"
          target="_blank"
          rel="noopener noreferrer"
          onclick="if(typeof gtag==='function'){gtag('event','register_click',{event_category:'VBS Registration',event_label:'Hero CTA'});}">
-        Save Your Spot Today! →
+        🎉 Save Your Spot Today!
       </a>
-      <a href="/vbs/" class="btn btn-outline">Learn More</a>
+      <a href="/vbs/" class="btn btn-party-outline">Learn More</a>
     </div>
+
   </div>
 </section>
 
 <div class="color-stripe" aria-hidden="true"></div>
 
-<!-- What to Expect -->
-<section class="section highlight-band" aria-labelledby="expect-heading">
+<!-- ═══ INFO GRID (poster-style: Dates / Time / Place / Who) ═══ -->
+<section class="info-section" aria-labelledby="info-heading">
   <div class="container">
-    <div class="section-intro">
-      <h2 id="expect-heading" class="section-title">What to Expect</h2>
-      <p class="section-subtitle">Three days packed with fun, friendship, and faith — designed for kids ages 4–12.</p>
-    </div>
+    <h2 id="info-heading" class="sr-only">Event Information</h2>
 
-    <div class="card-grid">
-      <article class="card card--blue">
-        <span class="card-icon" aria-hidden="true">🎮</span>
-        <h3>Games &amp; Activities</h3>
-        <p>Exciting games and crafts that bring Bible stories to life in a fun, hands-on way kids will love.</p>
-      </article>
+    <div class="info-grid">
 
-      <article class="card card--yellow">
-        <span class="card-icon" aria-hidden="true">🎵</span>
-        <h3>Music &amp; Worship</h3>
-        <p>Catchy songs and energetic worship that kids will be singing all summer long.</p>
-      </article>
+      <div class="info-card info-card--blue">
+        <div class="info-card__icon" aria-hidden="true">📅</div>
+        <div class="info-card__label">DATES</div>
+        <div class="info-card__value">August 21–23, 2026</div>
+        <div class="info-card__sub">(Friday – Sunday)</div>
+      </div>
 
-      <article class="card card--red">
-        <span class="card-icon" aria-hidden="true">📖</span>
-        <h3>Bible Stories</h3>
-        <p>Discover how Jesus welcomed everyone — and learn that God's love is freely given, not earned.</p>
-      </article>
+      <div class="info-card info-card--red">
+        <div class="info-card__icon" aria-hidden="true">⏰</div>
+        <div class="info-card__label">TIME</div>
+        <div class="info-card__value">9:00 AM – 3:00 PM</div>
+        <div class="info-card__sub">Thu &amp; Fri · Sun: 10:30 AM</div>
+      </div>
 
-      <article class="card card--green">
-        <span class="card-icon" aria-hidden="true">🍕</span>
-        <h3>Lunch &amp; Snacks</h3>
-        <p>Lunch and snacks are provided Thursday and Friday. No need to pack anything extra!</p>
-      </article>
+      <div class="info-card info-card--green">
+        <div class="info-card__icon" aria-hidden="true">📍</div>
+        <div class="info-card__label">PLACE</div>
+        <div class="info-card__value">Christ Central Buffalo</div>
+        <div class="info-card__sub">1407 North Forest Road<br>Williamsville, NY 14221</div>
+      </div>
 
-      <article class="card card--pink">
-        <span class="card-icon" aria-hidden="true">👨‍👩‍👧</span>
-        <h3>Family Community</h3>
-        <p>A chance for parents to meet the church, connect with other families, and see what Christ Central Buffalo is all about.</p>
-      </article>
+      <div class="info-card info-card--pink">
+        <div class="info-card__icon" aria-hidden="true">👧</div>
+        <div class="info-card__label">WHO</div>
+        <div class="info-card__value">Ages 4–12</div>
+        <div class="info-card__sub">Preschool – 6th Grade</div>
+      </div>
 
-      <article class="card card--navy">
-        <span class="card-icon" aria-hidden="true">🎊</span>
-        <h3>Sunday Party!</h3>
-        <p>Day 3 ends with a full backyard party — food, a bounce house, and fun for the whole family after the 10:30 AM service.</p>
-      </article>
     </div>
   </div>
 </section>
 
-<!-- Theme Verse -->
-<div class="container">
-  <div class="verse-block" role="complementary" aria-label="Theme verse">
-    <blockquote>
-      "Then Levi held a great banquet for Jesus at his house, and a large crowd of tax collectors and others were eating with them."
-    </blockquote>
-    <cite>Luke 5:29</cite>
-  </div>
-</div>
-
-<!-- Schedule Preview -->
-<section class="section" aria-labelledby="schedule-heading">
+<!-- ═══ JOIN US FOR + BIBLE TRUTH ═══ -->
+<section class="join-section" aria-labelledby="join-heading">
   <div class="container">
-    <div class="section-intro">
-      <h2 id="schedule-heading" class="section-title">Event Schedule</h2>
-      <p class="section-subtitle">Three days of surprises — each one more exciting than the last!</p>
-    </div>
+    <div class="join-layout">
 
-    <div class="schedule">
-      <div class="schedule-day">
-        <div class="day-label">Day 1 — Thursday</div>
-        <div class="day-date">August 21, 2026</div>
-        <div class="day-time">⏰ 9:00 AM – 3:00 PM</div>
-        <p>Kick off the surprise party! Games, crafts, music, Bible stories, and lunch provided.</p>
+      <!-- Left: Join us for -->
+      <div class="join-block">
+        <h2 id="join-heading" class="join-title">JOIN US FOR:</h2>
+        <ul class="join-list" role="list">
+          <li><span class="join-star join-star--yellow" aria-hidden="true">★</span> <strong>Awesome Bible Stories</strong></li>
+          <li><span class="join-star join-star--red"    aria-hidden="true">★</span> Fun Games &amp; Activities</li>
+          <li><span class="join-star join-star--blue"   aria-hidden="true">♪</span> Worship &amp; Songs</li>
+          <li><span class="join-star join-star--green"  aria-hidden="true">★</span> Crafts &amp; Snacks</li>
+          <li><span class="join-star join-star--pink"   aria-hidden="true">🎁</span> And So Many Surprises!</li>
+        </ul>
+
+        <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
+           class="btn btn-party"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="margin-top: 1.75rem; display: inline-block;">
+          Register Now →
+        </a>
       </div>
 
-      <div class="schedule-day">
-        <div class="day-label">Day 2 — Friday</div>
-        <div class="day-date">August 22, 2026</div>
-        <div class="day-time">⏰ 9:00 AM – 3:00 PM</div>
-        <p>The surprises keep coming! More stories, activities, snacks, and lunch provided.</p>
-      </div>
+      <!-- Right: Bible Truth card -->
+      <aside class="bible-truth-card" aria-label="Bible Truth">
+        <div class="bible-truth-card__label">BIBLE TRUTH:</div>
+        <blockquote class="bible-truth-card__quote">
+          "Every good and perfect gift is from above."
+        </blockquote>
+        <cite class="bible-truth-card__ref">James 1:17</cite>
+      </aside>
 
-      <div class="schedule-day">
-        <div class="day-label">Day 3 — Sunday</div>
-        <div class="day-date">August 23, 2026</div>
-        <div class="day-time">⛪ 10:30 AM church service, then backyard party for the whole family</div>
-        <p>Join us for Sunday worship, followed by an outdoor celebration with food and a bounce house!</p>
-      </div>
-    </div>
-
-    <div style="text-align:center; margin-top: 2.5rem;">
-      <a href="/vbs/" class="btn btn-secondary">See Full VBS Details →</a>
     </div>
   </div>
 </section>
 
-<!-- CTA Band -->
-<section class="cta-band" aria-labelledby="cta-heading">
+<!-- ═══ BOTTOM CTA BAND ═══ -->
+<section class="party-cta-band" aria-labelledby="cta-heading">
   <div class="container">
-    <h2 id="cta-heading">Ready to Join the Party?</h2>
-    <p>Spots are limited — register today to save your child's place at the 3-Day Surprise Party VBS. Just $5 per child, paid at the door.</p>
+    <p class="party-cta-band__line1">COME READY FOR FUN.</p>
+    <h2 id="cta-heading" class="party-cta-band__line2">LEAVE FILLED WITH <span class="joy-word">JOY!</span></h2>
     <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
-       class="btn btn-primary"
+       class="btn btn-party"
        target="_blank"
        rel="noopener noreferrer">
-      Register Now — It's Free to Sign Up!
+      🎉 Register — It's Free to Sign Up!
     </a>
+    <div class="party-cta-band__contact">
+      Questions? Contact
+      <a href="mailto:jonathan.choi@christcentralbuffalo.com">jonathan.choi@christcentralbuffalo.com</a>
+      &nbsp;·&nbsp;
+      <a href="tel:4257700908">(425) 770-0908</a>
+      &nbsp;·&nbsp;
+      <a href="https://christcentralbuffalo.com" target="_blank" rel="noopener noreferrer">christcentralbuffalo.com</a>
+    </div>
   </div>
 </section>
