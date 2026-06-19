@@ -1,0 +1,28 @@
+<!-- VBS Popup Modal — appears once per browser session via sessionStorage -->
+<div id="vbs-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-heading" aria-describedby="popup-desc" hidden>
+  <div class="popup-card">
+    <button class="popup-close" id="popup-close" aria-label="Close popup">&times;</button>
+
+    <div class="popup-confetti" aria-hidden="true">🎉</div>
+
+    <h2 id="popup-heading" class="popup-title">3-Day Surprise Party VBS</h2>
+    <p class="popup-dates">August 21–23, 2026</p>
+    <p id="popup-desc" class="popup-tagline">Every day brings a new surprise, a new story, and a new reminder that God's love is for everyone.</p>
+
+    <ul class="popup-details">
+      <li>🎨 Games, crafts, music &amp; snacks</li>
+      <li>📖 Bible stories about God's love</li>
+      <li>👧 Ages 4–12 &nbsp;|&nbsp; $5 per child</li>
+      <li>🍱 Lunch provided Thu &amp; Fri</li>
+    </ul>
+
+    <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
+       class="btn btn-primary popup-cta"
+       target="_blank"
+       rel="noopener noreferrer"
+       onclick="document.getElementById('vbs-popup').setAttribute('hidden', '')">
+      Save Your Spot Today!
+    </a>
+    <button class="popup-dismiss" id="popup-dismiss">Not right now</button>
+  </div>
+</div>

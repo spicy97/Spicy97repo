@@ -1,0 +1,54 @@
+title: "3-Day Surprise Party VBS — Christ Central Buffalo"
+description: "Join us for our 3-Day Surprise Party VBS August 21–23 at Christ Central Buffalo! Games, crafts, music, snacks, and Bible stories for kids ages 4–12. $5 per child. Lunch and snacks provided."
+url: "https://vbs.christcentralbuffalo.com"
+baseurl: ""
+
+# Author / contact
+author:
+  name: "Christ Central Buffalo"
+  email: "jonathan.choi@christcentralbuffalo.com"
+
+# Theme
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Permalink format
+permalink: /:title/
+
+# SEO / Social
+twitter:
+  card: summary_large_image
+logo: /assets/images/logo.png
+
+social:
+  name: "Christ Central Buffalo"
+
+# Navigation
+header_pages:
+  - index.md
+  - vbs/index.md
+  - about/index.md
+  - contact/index.md
+
+# Minima settings (overridden by custom layout but kept for reference)
+minima:
+  skin: auto
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .bundle/
+  - _site/
+  - .jekyll-cache/
+  - "VBS Branding/"
+  - "*.zip"
+  - "*.eps"
+  - "*.pdf"
+  - README.md
+  - .clinerules/

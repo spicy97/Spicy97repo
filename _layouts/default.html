@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- SEO -->
+  {% seo %}
+
+  <!-- Google Analytics 4 -->
+  <!-- TODO: Replace G-XXXXXXXXXX with your real GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body>
+
+  <!-- VBS Popup Modal -->
+  {% include popup.html %}
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-logo" href="/">
+        <img src="/assets/images/logo.png" alt="Christ Central Buffalo logo" width="48" height="48" onerror="this.style.display='none'">
+        <span class="site-title">Christ Central Buffalo</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="/" {% if page.url == '/' %}class="active" aria-current="page"{% endif %}>Home</a></li>
+          <li><a href="/vbs/" {% if page.url contains '/vbs' %}class="active" aria-current="page"{% endif %}>VBS Event</a></li>
+          <li><a href="/about/" {% if page.url contains '/about' %}class="active" aria-current="page"{% endif %}>About Our Church</a></li>
+          <li><a href="/contact/" {% if page.url contains '/contact' %}class="active" aria-current="page"{% endif %}>Contact</a></li>
+        </ul>
+        <a class="nav-cta" href="https://forms.google.com/PLACEHOLDER_FORM_URL" target="_blank" rel="noopener noreferrer">Register Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    {{ content }}
+  </main>
+
+  <!-- Footer -->
+  {% include footer.html %}
+
+  <!-- Scripts -->
+  <script src="/assets/js/popup.js" defer></script>
+  <script src="/assets/js/nav.js" defer></script>
+</body>
+</html>
