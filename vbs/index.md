@@ -62,14 +62,14 @@ permalink: /vbs/
         <div class="day-label">🎉 Day 1 — Friday, August 21</div>
         <div class="day-date">August 21, 2026</div>
         <div class="day-time">⏰ 9:00 AM – 3:00 PM</div>
-        <p>The party begins! Drop-off at 9 AM for a full day of surprise activities, crafts, games, and worship. Pickup by 3 PM.</p>
+        <p>The party begins! Drop-off at 9 AM for a full day of surprise activities, crafts, games, and worship. Lunch provided. Pickup by 3 PM.</p>
       </article>
 
       <article class="schedule-day">
         <div class="day-label">🎊 Day 2 — Saturday, August 22</div>
         <div class="day-date">August 22, 2026</div>
         <div class="day-time">⏰ 9:00 AM – 3:00 PM</div>
-        <p>More surprises, more fun! Another full day of Bible lessons, crafts, games, and music. Pickup by 3 PM.</p>
+        <p>More surprises, more fun! Another full day of Bible lessons, crafts, games, and music. Lunch provided. Pickup by 3 PM.</p>
       </article>
 
       <article class="schedule-day">
@@ -111,8 +111,8 @@ permalink: /vbs/
 
       <article class="card card--green">
         <span class="card-icon" aria-hidden="true">🍕</span>
-        <h3>Snacks</h3>
-        <p>Snacks are included each day. Kids will be energized and ready for all the fun!</p>
+        <h3>Lunch &amp; Snacks</h3>
+        <p>Lunch and snacks are provided on Friday and Saturday. No need to pack food!</p>
       </article>
 
       <article class="card card--pink">

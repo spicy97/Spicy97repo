@@ -101,8 +101,8 @@ permalink: /contact/
               What should my child bring?
             </summary>
             <p style="margin-top: 0.75rem; color: #555566; line-height: 1.65;">
-              Friday and Saturday: bring a water bottle and comfortable clothes for activities.
-              Include any allergy medications if needed.
+              Friday and Saturday: lunch and snacks are provided — no need to pack food!
+              Bring a water bottle, comfortable clothes for activities, and any allergy medications if needed.
               Sunday: just come as you are and enjoy the party!
             </p>
           </details>
