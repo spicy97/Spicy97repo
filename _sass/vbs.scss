@@ -1064,21 +1064,25 @@ body {
 .vbs-b { color: $red;    -webkit-text-stroke: 2px darken($red, 10%); }
 .vbs-s { color: $green;  -webkit-text-stroke: 2px darken($green, 10%); }
 
-// SURPRISE title — giant multi-color letters
+// SURPRISE title — giant multi-color letters (flex so it NEVER wraps)
 .surprise-title {
   font-family: $font-heading;
-  font-size: clamp(3.5rem, 16vw, 9rem);
+  font-size: clamp(1.5rem, 11vw, 7rem);
   line-height: 0.92;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   margin: 0 0 0.05em;
   text-transform: uppercase;
-  white-space: nowrap;
+  // Flexbox prevents ANY wrapping between letter spans
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: baseline;
 
-  .sp { display: inline-block; }
+  .sp { flex-shrink: 0; }
 
   // cycle through brand colors
   .sp1 { color: $red;    -webkit-text-stroke: 2px darken($red, 12%); }
-  .sp2 { color: $yellow; -webkit-text-stroke: 2px darken($yellow, 12%); color: #f5c800; }
+  .sp2 { color: #f5c800; -webkit-text-stroke: 2px darken($yellow, 12%); }
   .sp3 { color: $blue;   -webkit-text-stroke: 2px darken($blue, 12%); }
   .sp4 { color: $green;  -webkit-text-stroke: 2px darken($green, 12%); }
   .sp5 { color: $pink;   -webkit-text-stroke: 2px darken($pink, 12%); }
