@@ -101,8 +101,8 @@ permalink: /contact/
               What should my child bring?
             </summary>
             <p style="margin-top: 0.75rem; color: #555566; line-height: 1.65;">
-              Thursday and Friday: lunch and snacks are provided — no need to pack food!
-              Bring a water bottle, comfortable clothes for activities, and any allergy medications if needed.
+              Friday and Saturday: bring a water bottle and comfortable clothes for activities.
+              Include any allergy medications if needed.
               Sunday: just come as you are and enjoy the party!
             </p>
           </details>
@@ -136,7 +136,7 @@ permalink: /contact/
 <section class="cta-band" aria-labelledby="contact-cta-heading">
   <div class="container">
     <h2 id="contact-cta-heading">Ready to Register?</h2>
-    <p>Spots fill up fast — register your child today. It's free to sign up, and just $5 per child at the door.</p>
+    <p>Spots fill up fast — register your child today. The $5 per child fee is collected at the door.</p>
     <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
        class="btn btn-primary"
        target="_blank"

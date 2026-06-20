@@ -59,17 +59,17 @@ permalink: /vbs/
 
     <div class="schedule">
       <article class="schedule-day">
-        <div class="day-label">🎉 Day 1 — Thursday, August 21</div>
+        <div class="day-label">🎉 Day 1 — Friday, August 21</div>
         <div class="day-date">August 21, 2026</div>
         <div class="day-time">⏰ 9:00 AM – 3:00 PM</div>
-        <p>The party begins! Drop-off at 9 AM for a full day of surprise activities. Lunch and snacks provided. Pickup by 3 PM.</p>
+        <p>The party begins! Drop-off at 9 AM for a full day of surprise activities, crafts, games, and worship. Pickup by 3 PM.</p>
       </article>
 
       <article class="schedule-day">
-        <div class="day-label">🎊 Day 2 — Friday, August 22</div>
+        <div class="day-label">🎊 Day 2 — Saturday, August 22</div>
         <div class="day-date">August 22, 2026</div>
         <div class="day-time">⏰ 9:00 AM – 3:00 PM</div>
-        <p>More surprises, more fun! Another full day of activities with Bible lessons, crafts, games, music, and lunch provided.</p>
+        <p>More surprises, more fun! Another full day of Bible lessons, crafts, games, and music. Pickup by 3 PM.</p>
       </article>
 
       <article class="schedule-day">
@@ -111,8 +111,8 @@ permalink: /vbs/
 
       <article class="card card--green">
         <span class="card-icon" aria-hidden="true">🍕</span>
-        <h3>Lunch &amp; Snacks</h3>
-        <p>Full lunch and snacks are provided on Thursday and Friday. No need to pack food!</p>
+        <h3>Snacks</h3>
+        <p>Snacks are included each day. Kids will be energized and ready for all the fun!</p>
       </article>
 
       <article class="card card--pink">
@@ -144,11 +144,11 @@ permalink: /vbs/
           </tr>
           <tr>
             <th scope="row">Dates</th>
-            <td>Thursday–Friday, August 21–22 &amp; Sunday, August 23, 2026</td>
+            <td>Friday–Saturday, August 21–22 &amp; Sunday, August 23, 2026</td>
           </tr>
           <tr>
             <th scope="row">Times</th>
-            <td>Thu &amp; Fri: 9:00 AM – 3:00 PM · Sun: 10:30 AM service + backyard party</td>
+            <td>Fri &amp; Sat: 9:00 AM – 3:00 PM · Sun: 10:30 AM service + backyard party</td>
           </tr>
           <tr>
             <th scope="row">Age Range</th>
@@ -159,16 +159,12 @@ permalink: /vbs/
             <td>$5 per child — <strong>paid at the door</strong> (not collected online)</td>
           </tr>
           <tr>
-            <th scope="row">Meals</th>
-            <td>Lunch and snacks provided Thursday and Friday</td>
-          </tr>
-          <tr>
             <th scope="row">Location</th>
             <td>Christ Central Buffalo — <a href="/contact/">Contact us for address</a></td>
           </tr>
           <tr>
             <th scope="row">Registration</th>
-            <td>Online via Google Form (link below) — free to register</td>
+            <td>Online via Google Form (link below) — $5 per child at the door</td>
           </tr>
           <tr>
             <th scope="row">Questions?</th>
@@ -188,7 +184,7 @@ permalink: /vbs/
 <section class="cta-band" aria-labelledby="register-heading">
   <div class="container">
     <h2 id="register-heading">Save Your Spot Today!</h2>
-    <p>Registration is free and takes just 2 minutes. The $5 per child fee is collected at the door — not online.</p>
+    <p>Spots fill up fast — register your child today. The $5 per child fee is collected at the door on the day of the event.</p>
     <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
        class="btn btn-primary"
        target="_blank"

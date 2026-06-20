@@ -77,8 +77,8 @@ permalink: /
       <div class="info-card info-card--red">
         <div class="info-card__icon" aria-hidden="true">⏰</div>
         <div class="info-card__label">TIME</div>
-        <div class="info-card__value">9:00 AM – 3:00 PM</div>
-        <div class="info-card__sub">Thu &amp; Fri · Sun: 10:30 AM</div>
+        <div class="info-card__value">Fri &amp; Sat: 9 AM – 3 PM</div>
+        <div class="info-card__sub">Sun: 10:30 AM service + party</div>
       </div>
 
       <div class="info-card info-card--green">
@@ -146,7 +146,7 @@ permalink: /
        class="btn btn-party"
        target="_blank"
        rel="noopener noreferrer">
-      🎉 Register — It's Free to Sign Up!
+      🎉 Register Today — $5 Per Child at the Door
     </a>
     <div class="party-cta-band__contact">
       Questions? Contact
