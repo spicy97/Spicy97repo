@@ -992,108 +992,72 @@ main { flex: 1; }
 // POSTER-STYLE HOME PAGE REDESIGN
 // ════════════════════════════════════════════════════════════
 
-// ── Confetti float animation ──────────────────────────────────
+// ── Confetti animations ───────────────────────────────────────
 @keyframes confetti-drift-1 {
-  0%   { transform: translateY(0)   rotate(0deg)   scaleX(1); }
-  33%  { transform: translateY(30px) rotate(120deg) scaleX(-1); }
-  66%  { transform: translateY(15px) rotate(240deg) scaleX(1); }
-  100% { transform: translateY(0)   rotate(360deg) scaleX(-1); }
+  0%   { transform: translateY(0vh)   rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(720deg); }
 }
 @keyframes confetti-drift-2 {
-  0%   { transform: translateY(0)    rotate(0deg)   scaleY(1); }
-  50%  { transform: translateY(-25px) rotate(180deg) scaleY(-1); }
-  100% { transform: translateY(0)    rotate(360deg) scaleY(1); }
+  0%   { transform: translateY(0vh)   rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(-540deg); }
+}
+@keyframes confetti-drift-3 {
+  0%   { transform: translateY(0vh)   rotate(0deg) scaleX(1); }
+  50%  { transform: translateY(55vh)  rotate(360deg) scaleX(-1); }
+  100% { transform: translateY(110vh) rotate(720deg) scaleX(1); }
+}
+@keyframes confetti-sway {
+  0%, 100% { margin-left: 0; }
+  25%       { margin-left: 30px; }
+  75%       { margin-left: -30px; }
 }
 
-// ── Page background override — full surprise-party confetti ───
+// ── Page background override ──────────────────────────────────
 body {
-  // Rich confetti pattern: coloured diagonal streaks layered
   background-color: #fef9ef;
-  background-image:
-    // layer 1 – blue diagonal bars
-    repeating-linear-gradient(
-      -45deg,
-      rgba($blue,  0.10) 0px,   rgba($blue,  0.10) 3px,
-      transparent        3px,   transparent        22px
-    ),
-    // layer 2 – yellow diagonal bars (offset)
-    repeating-linear-gradient(
-      45deg,
-      rgba($yellow, 0.13) 0px,   rgba($yellow, 0.13) 3px,
-      transparent         3px,   transparent         28px
-    ),
-    // layer 3 – red diagonal bars
-    repeating-linear-gradient(
-      -45deg,
-      rgba($red,   0.08) 0px,   rgba($red,   0.08) 3px,
-      transparent        3px,   transparent        36px
-    ),
-    // layer 4 – green diagonal bars
-    repeating-linear-gradient(
-      45deg,
-      rgba($green, 0.07) 0px,   rgba($green, 0.07) 3px,
-      transparent        3px,   transparent        42px
-    ),
-    // layer 5 – pink dots
-    radial-gradient(circle, rgba($pink,  0.22) 2px, transparent 2px),
-    // layer 6 – blue dots
-    radial-gradient(circle, rgba($blue,  0.18) 2px, transparent 2px),
-    // layer 7 – yellow dots
-    radial-gradient(circle, rgba($yellow,0.22) 2px, transparent 2px),
-    // base warm cream
-    linear-gradient(160deg, #fff5e0 0%, #fef2f8 40%, #e8f4ff 80%, #f0fff0 100%);
-
-  background-size:
-    30px 30px,
-    38px 38px,
-    52px 52px,
-    64px 64px,
-    44px 44px,
-    60px 60px,
-    50px 50px,
-    100% 100%;
-
-  background-attachment: fixed;
 }
 
-// Animated floating confetti dots via pseudo-elements on body
-body::before,
-body::after {
-  content: '';
+// ── Confetti overlay — floats above everything ────────────────
+// The .confetti-overlay div is injected in default.html
+.confetti-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 9998;   // below popup (9999) but above all page content
+  overflow: hidden;
 }
 
-body::before {
-  background-image:
-    radial-gradient(circle, rgba($red,   0.55) 4px, transparent 4px),
-    radial-gradient(circle, rgba($yellow,0.55) 4px, transparent 4px),
-    radial-gradient(circle, rgba($blue,  0.45) 4px, transparent 4px),
-    radial-gradient(circle, rgba($green, 0.45) 4px, transparent 4px);
-  background-size: 120px 120px, 90px 90px, 150px 150px, 110px 110px;
-  background-position: 15px 15px, 60px 45px, 30px 80px, 90px 10px;
-  animation: confetti-drift-1 14s ease-in-out infinite;
-}
+// Each confetti piece
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  opacity: 0;
 
-body::after {
-  background-image:
-    radial-gradient(circle, rgba($pink,  0.50) 3px, transparent 3px),
-    radial-gradient(circle, rgba($navy,  0.30) 3px, transparent 3px),
-    radial-gradient(circle, rgba($red,   0.40) 3px, transparent 3px),
-    radial-gradient(circle, rgba($yellow,0.45) 3px, transparent 3px);
-  background-size: 80px 80px, 130px 130px, 100px 100px, 70px 70px;
-  background-position: 40px 60px, 10px 100px, 70px 30px, 20px 20px;
-  animation: confetti-drift-2 18s ease-in-out infinite;
-}
+  // 20 pieces with staggered positions, sizes, colours, and durations
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      left: (($i - 1) * 5.26%);
+      width:  6px + ($i % 4) * 3px;
+      height: 6px + ($i % 3) * 4px;
+      animation-delay: ($i * 0.6s);
+      animation-duration: 4s + ($i % 5) * 1.2s;
+    }
+  }
 
-// Make sure stacking context is correct so content sits above pseudo-elements
-.site-header,
-main,
-.site-footer {
-  position: relative;
-  z-index: 1;
+  // colour cycle
+  &:nth-child(5n+1)  { background: $red; }
+  &:nth-child(5n+2)  { background: $yellow; border-radius: 50%; }
+  &:nth-child(5n+3)  { background: $blue; }
+  &:nth-child(5n+4)  { background: $green; border-radius: 50%; }
+  &:nth-child(5n+5)  { background: $pink; }
+
+  // alternate drift animations
+  &:nth-child(3n+1) { animation-name: confetti-drift-1, confetti-sway; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite, infinite; animation-fill-mode: both, both; opacity: 1; }
+  &:nth-child(3n+2) { animation-name: confetti-drift-2, confetti-sway; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite, infinite; animation-fill-mode: both, both; opacity: 1; }
+  &:nth-child(3n+3) { animation-name: confetti-drift-3, confetti-sway; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite, infinite; animation-fill-mode: both, both; opacity: 1; }
 }
 
 // ── Party Hero ───────────────────────────────────────────────
