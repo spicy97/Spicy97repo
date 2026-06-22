@@ -880,9 +880,19 @@ main { flex: 1; }
 
 // ── Highlight band ──────────────────────────────────────────
 .highlight-band {
-  background: $off-white;
-  border-top: 1px solid darken($off-white, 8%);
-  border-bottom: 1px solid darken($off-white, 8%);
+  background-color: $off-white;
+  background-image:
+    // colourful polka dots scattered across the band
+    radial-gradient(circle, rgba($blue,   0.35) 3px, transparent 3px),
+    radial-gradient(circle, rgba($yellow, 0.40) 3px, transparent 3px),
+    radial-gradient(circle, rgba($red,    0.30) 3px, transparent 3px),
+    radial-gradient(circle, rgba($green,  0.30) 3px, transparent 3px),
+    radial-gradient(circle, rgba($pink,   0.35) 3px, transparent 3px);
+  background-size: 55px 55px, 75px 75px, 90px 90px, 65px 65px, 80px 80px;
+  background-position: 5px 10px, 30px 35px, 15px 55px, 50px 20px, 10px 70px;
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(90deg, $yellow, $red, $green, $blue, $pink) 1;
+  border-bottom: 4px solid transparent;
   padding: 3rem 1.25rem;
 
   @media (min-width: $bp-md) { padding: 4rem 2rem; }
@@ -982,22 +992,133 @@ main { flex: 1; }
 // POSTER-STYLE HOME PAGE REDESIGN
 // ════════════════════════════════════════════════════════════
 
-// ── Page background override (cream like the poster) ─────────
+// ── Confetti float animation ──────────────────────────────────
+@keyframes confetti-drift-1 {
+  0%   { transform: translateY(0)   rotate(0deg)   scaleX(1); }
+  33%  { transform: translateY(30px) rotate(120deg) scaleX(-1); }
+  66%  { transform: translateY(15px) rotate(240deg) scaleX(1); }
+  100% { transform: translateY(0)   rotate(360deg) scaleX(-1); }
+}
+@keyframes confetti-drift-2 {
+  0%   { transform: translateY(0)    rotate(0deg)   scaleY(1); }
+  50%  { transform: translateY(-25px) rotate(180deg) scaleY(-1); }
+  100% { transform: translateY(0)    rotate(360deg) scaleY(1); }
+}
+
+// ── Page background override — full surprise-party confetti ───
 body {
+  // Rich confetti pattern: coloured diagonal streaks layered
   background-color: #fef9ef;
+  background-image:
+    // layer 1 – blue diagonal bars
+    repeating-linear-gradient(
+      -45deg,
+      rgba($blue,  0.10) 0px,   rgba($blue,  0.10) 3px,
+      transparent        3px,   transparent        22px
+    ),
+    // layer 2 – yellow diagonal bars (offset)
+    repeating-linear-gradient(
+      45deg,
+      rgba($yellow, 0.13) 0px,   rgba($yellow, 0.13) 3px,
+      transparent         3px,   transparent         28px
+    ),
+    // layer 3 – red diagonal bars
+    repeating-linear-gradient(
+      -45deg,
+      rgba($red,   0.08) 0px,   rgba($red,   0.08) 3px,
+      transparent        3px,   transparent        36px
+    ),
+    // layer 4 – green diagonal bars
+    repeating-linear-gradient(
+      45deg,
+      rgba($green, 0.07) 0px,   rgba($green, 0.07) 3px,
+      transparent        3px,   transparent        42px
+    ),
+    // layer 5 – pink dots
+    radial-gradient(circle, rgba($pink,  0.22) 2px, transparent 2px),
+    // layer 6 – blue dots
+    radial-gradient(circle, rgba($blue,  0.18) 2px, transparent 2px),
+    // layer 7 – yellow dots
+    radial-gradient(circle, rgba($yellow,0.22) 2px, transparent 2px),
+    // base warm cream
+    linear-gradient(160deg, #fff5e0 0%, #fef2f8 40%, #e8f4ff 80%, #f0fff0 100%);
+
+  background-size:
+    30px 30px,
+    38px 38px,
+    52px 52px,
+    64px 64px,
+    44px 44px,
+    60px 60px,
+    50px 50px,
+    100% 100%;
+
+  background-attachment: fixed;
+}
+
+// Animated floating confetti dots via pseudo-elements on body
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  background-image:
+    radial-gradient(circle, rgba($red,   0.55) 4px, transparent 4px),
+    radial-gradient(circle, rgba($yellow,0.55) 4px, transparent 4px),
+    radial-gradient(circle, rgba($blue,  0.45) 4px, transparent 4px),
+    radial-gradient(circle, rgba($green, 0.45) 4px, transparent 4px);
+  background-size: 120px 120px, 90px 90px, 150px 150px, 110px 110px;
+  background-position: 15px 15px, 60px 45px, 30px 80px, 90px 10px;
+  animation: confetti-drift-1 14s ease-in-out infinite;
+}
+
+body::after {
+  background-image:
+    radial-gradient(circle, rgba($pink,  0.50) 3px, transparent 3px),
+    radial-gradient(circle, rgba($navy,  0.30) 3px, transparent 3px),
+    radial-gradient(circle, rgba($red,   0.40) 3px, transparent 3px),
+    radial-gradient(circle, rgba($yellow,0.45) 3px, transparent 3px);
+  background-size: 80px 80px, 130px 130px, 100px 100px, 70px 70px;
+  background-position: 40px 60px, 10px 100px, 70px 30px, 20px 20px;
+  animation: confetti-drift-2 18s ease-in-out infinite;
+}
+
+// Make sure stacking context is correct so content sits above pseudo-elements
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 // ── Party Hero ───────────────────────────────────────────────
 .party-hero {
   background-color: #fef9ef;
   background-image:
-    radial-gradient(circle, rgba($blue,0.12) 1px, transparent 1px),
-    radial-gradient(circle, rgba($yellow,0.15) 1px, transparent 1px),
-    radial-gradient(circle, rgba($red,0.10) 1px, transparent 1px),
-    radial-gradient(circle, rgba($green,0.10) 1px, transparent 1px),
-    radial-gradient(circle, rgba($pink,0.12) 1px, transparent 1px);
-  background-size: 40px 40px, 60px 60px, 80px 80px, 50px 50px, 70px 70px;
-  background-position: 0 0, 20px 20px, 10px 40px, 35px 15px, 5px 55px;
+    // Large bold polka dots — much more visible
+    radial-gradient(circle, rgba($blue,   0.55) 3px, transparent 3px),
+    radial-gradient(circle, rgba($yellow, 0.65) 3px, transparent 3px),
+    radial-gradient(circle, rgba($red,    0.50) 3px, transparent 3px),
+    radial-gradient(circle, rgba($green,  0.50) 3px, transparent 3px),
+    radial-gradient(circle, rgba($pink,   0.55) 3px, transparent 3px),
+    // Colourful diagonal confetti streaks in hero
+    repeating-linear-gradient(
+      -60deg,
+      rgba($yellow, 0.12) 0px, rgba($yellow, 0.12) 4px,
+      transparent 4px, transparent 28px
+    ),
+    repeating-linear-gradient(
+      60deg,
+      rgba($red, 0.09) 0px, rgba($red, 0.09) 4px,
+      transparent 4px, transparent 36px
+    );
+  background-size: 40px 40px, 60px 60px, 80px 80px, 50px 50px, 70px 70px, 32px 32px, 44px 44px;
+  background-position: 0 0, 20px 20px, 10px 40px, 35px 15px, 5px 55px, 0 0, 0 0;
   position: relative;
   overflow: hidden;
   padding: 3rem 1.25rem 2.5rem;
@@ -1190,10 +1311,20 @@ body {
 
 // ── Info Section (poster grid) ────────────────────────────────
 .info-section {
-  background: $white;
+  background-color: $white;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba($blue,   0.06) 0px, rgba($blue,   0.06) 2px, transparent 2px, transparent 18px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba($pink,   0.06) 0px, rgba($pink,   0.06) 2px, transparent 2px, transparent 18px
+    );
   padding: 2.5rem 1.25rem;
-  border-top: 3px solid $light-gray;
-  border-bottom: 3px solid $light-gray;
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(90deg, $blue, $yellow, $red, $green, $pink, $navy) 1;
+  border-bottom: 4px solid transparent;
 
   @media (min-width: $bp-md) { padding: 3rem 2rem; }
 }
@@ -1252,7 +1383,27 @@ body {
 
 // ── Join Section ─────────────────────────────────────────────
 .join-section {
-  background: #fef9ef;
+  background-color: #fef9ef;
+  background-image:
+    // festive diagonal streaks — warm yellow + pink
+    repeating-linear-gradient(
+      -45deg,
+      rgba($yellow, 0.14) 0px, rgba($yellow, 0.14) 4px,
+      transparent 4px, transparent 32px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      rgba($pink,   0.10) 0px, rgba($pink,   0.10) 4px,
+      transparent 4px, transparent 40px
+    ),
+    // scattered dots
+    radial-gradient(circle, rgba($red,   0.30) 2px, transparent 2px),
+    radial-gradient(circle, rgba($green, 0.28) 2px, transparent 2px);
+  background-size:
+    28px 28px,
+    36px 36px,
+    56px 56px,
+    72px 72px;
   padding: 3rem 1.25rem;
 
   @media (min-width: $bp-md) { padding: 4rem 2rem; }
