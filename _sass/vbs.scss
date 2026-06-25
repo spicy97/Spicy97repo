@@ -29,7 +29,9 @@ $light-gray: #f0f0f4;
   font-display: swap;
 }
 
-$font-heading: 'CHALOPS', 'Arial Black', 'Impact', sans-serif;
+// Fredoka One — loaded via Google Fonts in default.html
+// Thick, rounded, festive, and easy to read at any size
+$font-heading: 'Fredoka One', 'Arial Black', Impact, sans-serif;
 $font-body:    system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
 // ── Breakpoints ─────────────────────────────────────────────
@@ -1185,19 +1187,16 @@ body {
 
 .vbs-v {
   color: $blue;
-  -webkit-text-stroke: 3px darken($blue, 12%);
   text-shadow: 5px 5px 0 darken($blue, 30%), 0 6px 20px rgba($blue, 0.4);
   animation-delay: 0.05s;
 }
 .vbs-b {
   color: $red;
-  -webkit-text-stroke: 3px darken($red, 12%);
   text-shadow: 5px 5px 0 darken($red, 30%), 0 6px 20px rgba($red, 0.4);
   animation-delay: 0.15s;
 }
 .vbs-s {
   color: $green;
-  -webkit-text-stroke: 3px darken($green, 12%);
   text-shadow: 5px 5px 0 darken($green, 30%), 0 6px 20px rgba($green, 0.4);
   animation-delay: 0.25s;
 }
@@ -1232,13 +1231,13 @@ body {
   .sp:nth-child(7) { animation-delay: 0.72s; }
   .sp:nth-child(8) { animation-delay: 0.79s; }
 
-  // Colored drop-shadows per letter color
-  .sp1 { color: $red;    -webkit-text-stroke: 3px darken($red, 12%);    text-shadow: 4px 4px 0 darken($red, 30%),    0 4px 14px rgba($red, 0.35); }
-  .sp2 { color: #f5c800; -webkit-text-stroke: 3px darken($yellow, 12%); text-shadow: 4px 4px 0 darken($yellow, 35%), 0 4px 14px rgba($yellow, 0.4); }
-  .sp3 { color: $blue;   -webkit-text-stroke: 3px darken($blue, 12%);   text-shadow: 4px 4px 0 darken($blue, 30%),   0 4px 14px rgba($blue, 0.35); }
-  .sp4 { color: $green;  -webkit-text-stroke: 3px darken($green, 12%);  text-shadow: 4px 4px 0 darken($green, 30%),  0 4px 14px rgba($green, 0.35); }
-  .sp5 { color: $pink;   -webkit-text-stroke: 3px darken($pink, 12%);   text-shadow: 4px 4px 0 darken($pink, 30%),   0 4px 14px rgba($pink, 0.35); }
-  .sp6 { color: $navy;   -webkit-text-stroke: 3px lighten($navy, 10%);  text-shadow: 4px 4px 0 darken($navy, 15%),   0 4px 14px rgba($navy, 0.4); }
+  // Colored drop-shadows per letter — no stroke needed, Fredoka One is thick
+  .sp1 { color: $red;    text-shadow: 4px 4px 0 darken($red, 30%),    0 4px 14px rgba($red, 0.35); }
+  .sp2 { color: #f5c800; text-shadow: 4px 4px 0 darken($yellow, 35%), 0 4px 14px rgba($yellow, 0.4); }
+  .sp3 { color: $blue;   text-shadow: 4px 4px 0 darken($blue, 30%),   0 4px 14px rgba($blue, 0.35); }
+  .sp4 { color: $green;  text-shadow: 4px 4px 0 darken($green, 30%),  0 4px 14px rgba($green, 0.35); }
+  .sp5 { color: $pink;   text-shadow: 4px 4px 0 darken($pink, 30%),   0 4px 14px rgba($pink, 0.35); }
+  .sp6 { color: $navy;   text-shadow: 4px 4px 0 darken($navy, 15%),   0 4px 14px rgba($navy, 0.4); }
 }
 
 // PARTY! title
@@ -1263,13 +1262,13 @@ body {
   .pt:nth-child(5) { animation-delay: 1.16s; }
   .pt:nth-child(6) { animation-delay: 1.23s; }
 
-  // Colored drop-shadows per letter
-  .pt1 { color: $navy;   -webkit-text-stroke: 3px lighten($navy, 10%);   text-shadow: 5px 5px 0 darken($navy, 15%),   0 5px 18px rgba($navy, 0.4); }
-  .pt2 { color: $pink;   -webkit-text-stroke: 3px darken($pink, 10%);    text-shadow: 5px 5px 0 darken($pink, 28%),   0 5px 18px rgba($pink, 0.35); }
-  .pt3 { color: $blue;   -webkit-text-stroke: 3px darken($blue, 10%);    text-shadow: 5px 5px 0 darken($blue, 28%),   0 5px 18px rgba($blue, 0.35); }
-  .pt4 { color: #f5c800; -webkit-text-stroke: 3px darken($yellow, 15%);  text-shadow: 5px 5px 0 darken($yellow, 35%), 0 5px 18px rgba($yellow, 0.4); }
-  .pt5 { color: $red;    -webkit-text-stroke: 3px darken($red, 10%);     text-shadow: 5px 5px 0 darken($red, 28%),    0 5px 18px rgba($red, 0.35); }
-  .pt6 { color: $green;  -webkit-text-stroke: 3px darken($green, 10%);   text-shadow: 5px 5px 0 darken($green, 28%),  0 5px 18px rgba($green, 0.35); }
+  // Colored drop-shadows per letter — no stroke needed, Fredoka One is thick
+  .pt1 { color: $navy;   text-shadow: 5px 5px 0 darken($navy, 15%),   0 5px 18px rgba($navy, 0.4); }
+  .pt2 { color: $pink;   text-shadow: 5px 5px 0 darken($pink, 28%),   0 5px 18px rgba($pink, 0.35); }
+  .pt3 { color: $blue;   text-shadow: 5px 5px 0 darken($blue, 28%),   0 5px 18px rgba($blue, 0.35); }
+  .pt4 { color: #f5c800; text-shadow: 5px 5px 0 darken($yellow, 35%), 0 5px 18px rgba($yellow, 0.4); }
+  .pt5 { color: $red;    text-shadow: 5px 5px 0 darken($red, 28%),    0 5px 18px rgba($red, 0.35); }
+  .pt6 { color: $green;  text-shadow: 5px 5px 0 darken($green, 28%),  0 5px 18px rgba($green, 0.35); }
 }
 
 // Teal tagline banner (matches poster)
