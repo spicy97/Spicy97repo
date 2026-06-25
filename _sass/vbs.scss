@@ -1139,15 +1139,16 @@ body {
 // VBS wordmark
 .vbs-wordmark {
   font-family: $font-heading;
-  font-size: clamp(3rem, 12vw, 6rem);
+  font-size: clamp(3.5rem, 14vw, 8rem);
   line-height: 1;
   margin-bottom: 0.1em;
   letter-spacing: 0.06em;
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.2);
 }
 
-.vbs-v { color: $blue;   -webkit-text-stroke: 2px darken($blue, 10%); }
-.vbs-b { color: $red;    -webkit-text-stroke: 2px darken($red, 10%); }
-.vbs-s { color: $green;  -webkit-text-stroke: 2px darken($green, 10%); }
+.vbs-v { color: $blue;   -webkit-text-stroke: 3px darken($blue, 10%); }
+.vbs-b { color: $red;    -webkit-text-stroke: 3px darken($red, 10%); }
+.vbs-s { color: $green;  -webkit-text-stroke: 3px darken($green, 10%); }
 
 // SURPRISE title — giant multi-color letters (flex so it NEVER wraps)
 .surprise-title {
@@ -1157,6 +1158,7 @@ body {
   letter-spacing: 0;
   margin: 0 0 0.05em;
   text-transform: uppercase;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.2), 0 5px 16px rgba(0,0,0,0.18);
   // Flexbox prevents ANY wrapping between letter spans
   display: flex;
   flex-wrap: nowrap;
@@ -1166,31 +1168,32 @@ body {
   .sp { flex-shrink: 0; }
 
   // cycle through brand colors
-  .sp1 { color: $red;    -webkit-text-stroke: 2px darken($red, 12%); }
-  .sp2 { color: #f5c800; -webkit-text-stroke: 2px darken($yellow, 12%); }
-  .sp3 { color: $blue;   -webkit-text-stroke: 2px darken($blue, 12%); }
-  .sp4 { color: $green;  -webkit-text-stroke: 2px darken($green, 12%); }
-  .sp5 { color: $pink;   -webkit-text-stroke: 2px darken($pink, 12%); }
-  .sp6 { color: $navy;   -webkit-text-stroke: 2px darken($navy, 12%); }
+  .sp1 { color: $red;    -webkit-text-stroke: 3px darken($red, 12%); }
+  .sp2 { color: #f5c800; -webkit-text-stroke: 3px darken($yellow, 12%); }
+  .sp3 { color: $blue;   -webkit-text-stroke: 3px darken($blue, 12%); }
+  .sp4 { color: $green;  -webkit-text-stroke: 3px darken($green, 12%); }
+  .sp5 { color: $pink;   -webkit-text-stroke: 3px darken($pink, 12%); }
+  .sp6 { color: $navy;   -webkit-text-stroke: 3px darken($navy, 12%); }
 }
 
 // PARTY! title
 .party-title {
   font-family: $font-heading;
-  font-size: clamp(2.5rem, 12vw, 7rem);
+  font-size: clamp(2.5rem, 12vw, 8rem);
   line-height: 1;
   letter-spacing: 0.03em;
   margin-bottom: 1rem;
   text-transform: uppercase;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.2), 0 5px 18px rgba(0,0,0,0.18);
 
   .pt { display: inline-block; }
 
-  .pt1 { color: $navy;   -webkit-text-stroke: 2px lighten($navy, 10%); }
-  .pt2 { color: $pink;   -webkit-text-stroke: 2px darken($pink, 10%); }
-  .pt3 { color: $blue;   -webkit-text-stroke: 2px darken($blue, 10%); }
-  .pt4 { color: $yellow; -webkit-text-stroke: 2px darken($yellow, 15%); color: #f5c800; }
-  .pt5 { color: $red;    -webkit-text-stroke: 2px darken($red, 10%); }
-  .pt6 { color: $green;  -webkit-text-stroke: 2px darken($green, 10%); }
+  .pt1 { color: $navy;   -webkit-text-stroke: 3px lighten($navy, 10%); }
+  .pt2 { color: $pink;   -webkit-text-stroke: 3px darken($pink, 10%); }
+  .pt3 { color: $blue;   -webkit-text-stroke: 3px darken($blue, 10%); }
+  .pt4 { color: $yellow; -webkit-text-stroke: 3px darken($yellow, 15%); color: #f5c800; }
+  .pt5 { color: $red;    -webkit-text-stroke: 3px darken($red, 10%); }
+  .pt6 { color: $green;  -webkit-text-stroke: 3px darken($green, 10%); }
 }
 
 // Teal tagline banner (matches poster)

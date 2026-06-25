@@ -36,13 +36,6 @@ permalink: /
       <span class="pt pt1">P</span><span class="pt pt2">A</span><span class="pt pt3">R</span><span class="pt pt4">T</span><span class="pt pt5">Y</span><span class="pt pt6">!</span>
     </div>
 
-    <!-- Teal tagline banner -->
-    <div class="tagline-banner">
-      <span class="tagline-heart" aria-hidden="true">❤️</span>
-      God's Love Is the Best Gift Ever!
-      <span class="tagline-heart" aria-hidden="true">❤️</span>
-    </div>
-
     <!-- Register CTA -->
     <div class="hero-cta-wrap">
       <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
