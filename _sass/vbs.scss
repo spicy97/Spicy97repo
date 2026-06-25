@@ -1607,11 +1607,50 @@ body {
 }
 
 // ── Mobile hero title boost (≤ 480px) ───────────────────────
-// Forces the title stack to fill the screen width on small phones.
-// Without this, clamp()'s preferred vw value can produce tiny text
-// on narrow viewports because 8 letters must share limited space.
+// Aggressive overrides so the titles fill the phone screen.
+// Note: surprise-title is flex-nowrap with 8 letters — max safe
+// font-size is ~14vw before overflow risk on 320px screens.
 @media (max-width: 480px) {
-  .vbs-wordmark   { font-size: 22vw; }
-  .surprise-title { font-size: 10.5vw; }
-  .party-title    { font-size: 14vw; }
+  // Sizes: fill the screen width
+  .vbs-wordmark   { font-size: 27vw; }
+  .surprise-title { font-size: 14vw; }
+  .party-title    { font-size: 19vw; }
+
+  // Stroke: substantially thicker on mobile so letters look heavy
+  .vbs-v { -webkit-text-stroke-width: 5px; }
+  .vbs-b { -webkit-text-stroke-width: 5px; }
+  .vbs-s { -webkit-text-stroke-width: 5px; }
+
+  .surprise-title .sp1,
+  .surprise-title .sp2,
+  .surprise-title .sp3,
+  .surprise-title .sp4,
+  .surprise-title .sp5,
+  .surprise-title .sp6 { -webkit-text-stroke-width: 4px; }
+
+  .party-title .pt1,
+  .party-title .pt2,
+  .party-title .pt3,
+  .party-title .pt4,
+  .party-title .pt5,
+  .party-title .pt6 { -webkit-text-stroke-width: 5px; }
+
+  // Deeper drop-shadows so the poster effect pops on small screens
+  .vbs-v { text-shadow: 6px 6px 0 darken($blue, 32%),  0 8px 22px rgba($blue, 0.45); }
+  .vbs-b { text-shadow: 6px 6px 0 darken($red, 32%),   0 8px 22px rgba($red, 0.45); }
+  .vbs-s { text-shadow: 6px 6px 0 darken($green, 32%), 0 8px 22px rgba($green, 0.45); }
+
+  .surprise-title .sp1 { text-shadow: 4px 4px 0 darken($red, 35%),    0 5px 14px rgba($red, 0.45); }
+  .surprise-title .sp2 { text-shadow: 4px 4px 0 darken($yellow, 40%), 0 5px 14px rgba($yellow, 0.5); }
+  .surprise-title .sp3 { text-shadow: 4px 4px 0 darken($blue, 35%),   0 5px 14px rgba($blue, 0.45); }
+  .surprise-title .sp4 { text-shadow: 4px 4px 0 darken($green, 35%),  0 5px 14px rgba($green, 0.45); }
+  .surprise-title .sp5 { text-shadow: 4px 4px 0 darken($pink, 35%),   0 5px 14px rgba($pink, 0.45); }
+  .surprise-title .sp6 { text-shadow: 4px 4px 0 darken($navy, 20%),   0 5px 14px rgba($navy, 0.5); }
+
+  .party-title .pt1 { text-shadow: 6px 6px 0 darken($navy, 20%),   0 6px 20px rgba($navy, 0.5); }
+  .party-title .pt2 { text-shadow: 6px 6px 0 darken($pink, 32%),   0 6px 20px rgba($pink, 0.45); }
+  .party-title .pt3 { text-shadow: 6px 6px 0 darken($blue, 32%),   0 6px 20px rgba($blue, 0.45); }
+  .party-title .pt4 { text-shadow: 6px 6px 0 darken($yellow, 40%), 0 6px 20px rgba($yellow, 0.5); }
+  .party-title .pt5 { text-shadow: 6px 6px 0 darken($red, 32%),    0 6px 20px rgba($red, 0.45); }
+  .party-title .pt6 { text-shadow: 6px 6px 0 darken($green, 32%),  0 6px 20px rgba($green, 0.45); }
 }
