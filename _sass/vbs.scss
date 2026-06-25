@@ -1616,24 +1616,20 @@ body {
   .surprise-title { font-size: 14vw; }
   .party-title    { font-size: 19vw; }
 
-  // Stroke: substantially thicker on mobile so letters look heavy
-  .vbs-v { -webkit-text-stroke-width: 5px; }
-  .vbs-b { -webkit-text-stroke-width: 5px; }
-  .vbs-s { -webkit-text-stroke-width: 5px; }
-
+  // Remove letter outlines on mobile — solid fills only
+  .vbs-v, .vbs-b, .vbs-s,
   .surprise-title .sp1,
   .surprise-title .sp2,
   .surprise-title .sp3,
   .surprise-title .sp4,
   .surprise-title .sp5,
-  .surprise-title .sp6 { -webkit-text-stroke-width: 4px; }
-
+  .surprise-title .sp6,
   .party-title .pt1,
   .party-title .pt2,
   .party-title .pt3,
   .party-title .pt4,
   .party-title .pt5,
-  .party-title .pt6 { -webkit-text-stroke-width: 5px; }
+  .party-title .pt6 { -webkit-text-stroke: 0; }
 
   // Deeper drop-shadows so the poster effect pops on small screens
   .vbs-v { text-shadow: 6px 6px 0 darken($blue, 32%),  0 8px 22px rgba($blue, 0.45); }
