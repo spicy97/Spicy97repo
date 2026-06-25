@@ -1170,7 +1170,7 @@ body {
 // VBS wordmark
 .vbs-wordmark {
   font-family: $font-heading;
-  font-size: clamp(4rem, 16vw, 10rem);
+  font-size: clamp(5rem, 18vw, 10rem);
   line-height: 1;
   margin-bottom: 0.05em;
   letter-spacing: 0.06em;
@@ -1205,7 +1205,7 @@ body {
 // SURPRISE title — giant multi-color letters (flex so it NEVER wraps)
 .surprise-title {
   font-family: $font-heading;
-  font-size: clamp(1.5rem, 11vw, 7rem);
+  font-size: clamp(2.8rem, 11vw, 7rem);
   line-height: 0.92;
   letter-spacing: 0;
   margin: 0 0 0.05em;
@@ -1244,7 +1244,7 @@ body {
 // PARTY! title
 .party-title {
   font-family: $font-heading;
-  font-size: clamp(2.5rem, 12vw, 8rem);
+  font-size: clamp(3.5rem, 13vw, 8rem);
   line-height: 1;
   letter-spacing: 0.03em;
   margin-bottom: 1rem;
@@ -1604,4 +1604,14 @@ body {
 .joy-word {
   color: $yellow;
   -webkit-text-stroke: 1px darken($yellow, 15%);
+}
+
+// ── Mobile hero title boost (≤ 480px) ───────────────────────
+// Forces the title stack to fill the screen width on small phones.
+// Without this, clamp()'s preferred vw value can produce tiny text
+// on narrow viewports because 8 letters must share limited space.
+@media (max-width: 480px) {
+  .vbs-wordmark   { font-size: 22vw; }
+  .surprise-title { font-size: 10.5vw; }
+  .party-title    { font-size: 14vw; }
 }
