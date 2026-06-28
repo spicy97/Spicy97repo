@@ -38,7 +38,7 @@ permalink: /
 
     <!-- Register CTA -->
     <div class="hero-cta-wrap">
-      <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
+      <a href="https://christcentralbuffalo.com/vbs-registration"
          class="btn btn-party"
          target="_blank"
          rel="noopener noreferrer"
@@ -108,7 +108,7 @@ permalink: /
           <li><span class="join-star join-star--pink"   aria-hidden="true">🎁</span> And So Many Surprises!</li>
         </ul>
 
-        <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
+        <a href="https://christcentralbuffalo.com/vbs-registration"
            class="btn btn-party"
            target="_blank"
            rel="noopener noreferrer"
@@ -135,7 +135,7 @@ permalink: /
   <div class="container">
     <p class="party-cta-band__line1">COME READY FOR FUN.</p>
     <h2 id="cta-heading" class="party-cta-band__line2">LEAVE FILLED WITH <span class="joy-word">JOY!</span></h2>
-    <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
+    <a href="https://christcentralbuffalo.com/vbs-registration"
        class="btn btn-party"
        target="_blank"
        rel="noopener noreferrer">

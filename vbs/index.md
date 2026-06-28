@@ -185,7 +185,7 @@ permalink: /vbs/
   <div class="container">
     <h2 id="register-heading">Save Your Spot Today!</h2>
     <p>Spots fill up fast — register your child today. The $5 per child fee is collected at the door on the day of the event.</p>
-    <a href="https://forms.google.com/PLACEHOLDER_FORM_URL"
+    <a href="https://christcentralbuffalo.com/vbs-registration"
        class="btn btn-primary"
        target="_blank"
        rel="noopener noreferrer"
