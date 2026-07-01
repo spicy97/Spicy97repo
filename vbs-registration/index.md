@@ -35,8 +35,25 @@ permalink: /vbs-registration/
         <div class="reg-success-inner">
           <div class="reg-success-emoji">🎉</div>
           <h3>You're registered!</h3>
-          <p>Thanks for signing up! We can't wait to see your child(ren) at VBS. A confirmation has been recorded. See you August 21–23!</p>
-          <a href="/vbs/" class="btn btn-primary" style="margin-top:1rem;">Back to VBS Info →</a>
+          <p>Thanks for signing up! We can't wait to see your child(ren) at VBS. See you August 21–23!</p>
+
+          <div class="reg-giving-box">
+            <p class="reg-giving-title">💳 Pay Your $5 Per Child Registration Fee</p>
+            <p class="reg-giving-desc">You can pay online through our giving page — no cash needed!</p>
+            <a href="https://christcentralbuffalo.com/give"
+               class="btn btn-primary"
+               target="_blank"
+               rel="noopener noreferrer">
+              Pay Online Now →
+            </a>
+            <div class="reg-giving-memo">
+              <p><strong>In the memo / note field, please write:</strong></p>
+              <p class="reg-giving-memo-example">[Child's name(s)] — VBS 2026</p>
+              <p class="reg-giving-memo-eg">e.g. "Emma &amp; Noah Smith — VBS 2026"</p>
+            </div>
+          </div>
+
+          <a href="/vbs/" class="btn btn-secondary" style="margin-top:0.5rem;">Back to VBS Info →</a>
         </div>
       </div>
 
@@ -126,7 +143,6 @@ permalink: /vbs-registration/
 
         <!-- Submit -->
         <div class="reg-submit-wrap">
-          <p class="reg-cost-note">💵 <strong>$5 per child</strong> is collected at the door — not online.</p>
           <button type="submit" id="reg-submit-btn" class="btn btn-primary reg-submit-btn">
             Submit Registration →
           </button>

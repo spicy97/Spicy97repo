@@ -2015,6 +2015,59 @@ body {
   padding-top: 0.5rem;
 }
 
+// ── Giving box (shown in success card) ──────────────────────
+.reg-giving-box {
+  background: $off-white;
+  border: 2px solid $light-gray;
+  border-top: 3px solid $yellow;
+  border-radius: 14px;
+  padding: 1.5rem 1.25rem;
+  margin: 1.5rem 0 1.25rem;
+  text-align: center;
+}
+
+.reg-giving-title {
+  font-family: $font-heading;
+  font-size: 1.15rem;
+  color: $navy;
+  margin-bottom: 0.4rem;
+}
+
+.reg-giving-desc {
+  font-size: 0.92rem;
+  color: $gray;
+  margin-bottom: 1rem;
+}
+
+.reg-giving-memo {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid $light-gray;
+  font-size: 0.9rem;
+  color: $dark;
+  text-align: left;
+
+  p { margin-bottom: 0.3rem; }
+}
+
+.reg-giving-memo-example {
+  font-family: monospace;
+  background: $white;
+  border: 1.5px solid $light-gray;
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  color: $navy;
+  font-size: 0.95rem;
+  margin: 0.4rem 0 0.2rem;
+  display: inline-block;
+}
+
+.reg-giving-memo-eg {
+  font-size: 0.82rem;
+  color: $gray;
+  font-style: italic;
+}
+
 // ── Error state ──────────────────────────────────────────────
 .reg-error {
   background: lighten($red, 42%);
