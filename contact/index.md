@@ -73,7 +73,7 @@ permalink: /contact/
             </summary>
             <p style="margin-top: 0.75rem; color: #555566; line-height: 1.65;">
               Registration is done online through our Google Form — click "Register Now" on any page.
-              It takes about 2 minutes. The $5 fee is collected at the door, not online.
+              It takes about 2 minutes. The $5 fee can be paid online after registration.
             </p>
           </details>
 
@@ -136,7 +136,7 @@ permalink: /contact/
 <section class="cta-band" aria-labelledby="contact-cta-heading">
   <div class="container">
     <h2 id="contact-cta-heading">Ready to Register?</h2>
-    <p>Spots fill up fast — register your child today. The $5 per child fee is collected at the door.</p>
+    <p>Spots fill up fast — register your child today. $5 per child.</p>
     <a href="/vbs-registration/"
        class="btn btn-primary">
       Register Now →

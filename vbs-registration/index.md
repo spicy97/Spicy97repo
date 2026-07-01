@@ -12,7 +12,7 @@ permalink: /vbs-registration/
   <div class="container">
     <span class="hero-eyebrow" style="margin-bottom:1rem; display:inline-block;">🎉 VBS 2026</span>
     <h1>Register for VBS</h1>
-    <p>3-Day Surprise Party &nbsp;·&nbsp; August 21–23, 2026 &nbsp;·&nbsp; $5 per child at the door</p>
+    <p>3-Day Surprise Party &nbsp;·&nbsp; August 21–23, 2026 &nbsp;·&nbsp; $5 per child</p>
   </div>
 </header>
 

@@ -156,7 +156,7 @@ permalink: /vbs/
           </tr>
           <tr>
             <th scope="row">Cost</th>
-            <td>$5 per child — <strong>paid at the door</strong> (not collected online)</td>
+            <td>$5 per child</td>
           </tr>
           <tr>
             <th scope="row">Location</th>
@@ -164,7 +164,7 @@ permalink: /vbs/
           </tr>
           <tr>
             <th scope="row">Registration</th>
-            <td>Online via Google Form (link below) — $5 per child at the door</td>
+            <td>Online — $5 per child</td>
           </tr>
           <tr>
             <th scope="row">Questions?</th>
@@ -184,7 +184,7 @@ permalink: /vbs/
 <section class="cta-band" aria-labelledby="register-heading">
   <div class="container">
     <h2 id="register-heading">Save Your Spot Today!</h2>
-    <p>Spots fill up fast — register your child today. The $5 per child fee is collected at the door on the day of the event.</p>
+    <p>Spots fill up fast — register your child today. $5 per child.</p>
     <a href="/vbs-registration/"
        class="btn btn-primary"
        onclick="if(typeof gtag==='function'){gtag('event','register_click',{event_category:'VBS Registration',event_label:'VBS Page CTA'});}">
