@@ -47,28 +47,40 @@ permalink: /vbs-registration/
 
       <form id="vbs-reg-form" class="reg-form" novalidate>
 
-        <!-- ── Emergency Contact Info ─────────────────────── -->
+        <!-- ── Children (first) ───────────────────────────── -->
+        <div id="children-container">
+          <!-- Child blocks are injected here by JS -->
+        </div>
+
+        <!-- Add Child Button -->
+        <div class="reg-add-child-wrap">
+          <button type="button" id="add-child-btn" class="btn-add-child" aria-label="Add another child">
+            <span aria-hidden="true">+</span> Add Another Child
+          </button>
+        </div>
+
+        <!-- ── Parent / Guardian Information ─────────────── -->
         <div class="reg-section">
           <h3 class="reg-section-title">
-            <span class="reg-section-icon">👪</span>
-            Emergency Contact Information
+            <span class="reg-section-icon">👤</span>
+            Parent / Guardian Information
           </h3>
           <p class="reg-section-note">This information is shared for all children in this registration.</p>
 
           <div class="reg-fields">
             <div class="reg-field reg-field--full">
-              <label for="ec-name">Emergency Contact Name <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="ec-name" name="ec_name" autocomplete="name" required placeholder="Full name">
+              <label for="parent-name">Parent / Guardian Name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="parent-name" name="parent_name" autocomplete="name" required placeholder="Full name">
             </div>
 
             <div class="reg-field">
-              <label for="ec-email">Email Address <span class="req" aria-hidden="true">*</span></label>
-              <input type="email" id="ec-email" name="ec_email" autocomplete="email" required placeholder="you@example.com">
+              <label for="parent-email">Email Address <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="parent-email" name="parent_email" autocomplete="email" required placeholder="you@example.com">
             </div>
 
             <div class="reg-field">
-              <label for="ec-phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
-              <input type="tel" id="ec-phone" name="ec_phone" autocomplete="tel" required placeholder="(716) 555-0100">
+              <label for="parent-phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+              <input type="tel" id="parent-phone" name="parent_phone" autocomplete="tel" required placeholder="(716) 555-0100">
             </div>
 
             <div class="reg-field reg-field--full">
@@ -79,16 +91,37 @@ permalink: /vbs-registration/
           </div>
         </div>
 
-        <!-- ── Children ───────────────────────────────────── -->
-        <div id="children-container">
-          <!-- Child blocks are injected here by JS -->
-        </div>
+        <!-- ── Emergency Contact ──────────────────────────── -->
+        <div class="reg-section">
+          <h3 class="reg-section-title">
+            <span class="reg-section-icon">👪</span>
+            Emergency Contact
+          </h3>
 
-        <!-- Add Child Button -->
-        <div class="reg-add-child-wrap">
-          <button type="button" id="add-child-btn" class="btn-add-child" aria-label="Add another child">
-            <span aria-hidden="true">+</span> Add Another Child
-          </button>
+          <!-- "Same as parent" toggle -->
+          <label class="reg-same-label">
+            <input type="checkbox" id="ec-same" name="ec_same" checked>
+            <span>Emergency contact is the same as parent / guardian above</span>
+          </label>
+
+          <!-- Extra EC fields — hidden when checkbox is checked -->
+          <div id="ec-different-fields" class="reg-ec-different" hidden>
+            <p class="reg-section-note" style="margin-top:1rem;">Please provide a different emergency contact below.</p>
+            <div class="reg-fields">
+              <div class="reg-field reg-field--full">
+                <label for="ec-name">Emergency Contact Name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="ec-name" name="ec_name" autocomplete="off" placeholder="Full name">
+              </div>
+              <div class="reg-field">
+                <label for="ec-email">Emergency Contact Email <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="ec-email" name="ec_email" autocomplete="off" placeholder="you@example.com">
+              </div>
+              <div class="reg-field">
+                <label for="ec-phone">Emergency Contact Phone <span class="req" aria-hidden="true">*</span></label>
+                <input type="tel" id="ec-phone" name="ec_phone" autocomplete="off" placeholder="(716) 555-0100">
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Submit -->
@@ -110,20 +143,46 @@ permalink: /vbs-registration/
 <script>
 (function () {
   // ── CONFIG ────────────────────────────────────────────────────────
-  // Replace with your deployed Google Apps Script Web App URL
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwoMsgV38eZ-MbpZUwaYaRJUKglQ1JW4f2Bkz5UscU4P9lvP06Hh9PL88Q25XZ7ZK68/exec';
   // ─────────────────────────────────────────────────────────────────
 
-  var childCount = 0;
-  var container  = document.getElementById('children-container');
-  var addBtn     = document.getElementById('add-child-btn');
-  var form       = document.getElementById('vbs-reg-form');
-  var submitBtn  = document.getElementById('reg-submit-btn');
-  var successBox = document.getElementById('reg-success');
-  var errorBox   = document.getElementById('reg-error');
+  var childCount   = 0;
+  var container    = document.getElementById('children-container');
+  var addBtn       = document.getElementById('add-child-btn');
+  var form         = document.getElementById('vbs-reg-form');
+  var submitBtn    = document.getElementById('reg-submit-btn');
+  var successBox   = document.getElementById('reg-success');
+  var errorBox     = document.getElementById('reg-error');
+  var ecSameChk    = document.getElementById('ec-same');
+  var ecDiffFields = document.getElementById('ec-different-fields');
+  var ecNameEl     = document.getElementById('ec-name');
+  var ecEmailEl    = document.getElementById('ec-email');
+  var ecPhoneEl    = document.getElementById('ec-phone');
 
-  var SHIRT_SIZES = ['Youth XS (4–5)', 'Youth S (6–8)', 'Youth M (10–12)', 'Youth L (14–16)', 'Adult S', 'Adult M', 'Adult L', 'Adult XL'];
+  // ── "Same as parent" toggle ───────────────────────────────────────
+  function updateEcVisibility() {
+    var same = ecSameChk.checked;
+    ecDiffFields.hidden = same;
+    // Only require the extra fields when they're visible
+    ecNameEl.required  = !same;
+    ecEmailEl.required = !same;
+    ecPhoneEl.required = !same;
+  }
+  ecSameChk.addEventListener('change', updateEcVisibility);
+  updateEcVisibility(); // run on load
 
+  // ── Dropdown options ──────────────────────────────────────────────
+  var AGES   = [4,5,6,7,8,9,10,11,12];
+  var GRADES = ['Pre-K','Kindergarten','1st','2nd','3rd','4th','5th','6th'];
+  var SHIRT_SIZES = ['Youth XS (4–5)','Youth S (6–8)','Youth M (10–12)','Youth L (14–16)','Adult S','Adult M','Adult L','Adult XL'];
+
+  function optionsHtml(arr) {
+    return arr.map(function(v) {
+      return '<option value="' + v + '">' + v + '</option>';
+    }).join('');
+  }
+
+  // ── Build a child block ───────────────────────────────────────────
   function buildChildBlock(index) {
     var num   = index + 1;
     var id    = 'child-' + index;
@@ -133,10 +192,6 @@ permalink: /vbs-registration/
     block.className = 'reg-child-block';
     block.dataset.index = index;
     block.setAttribute('aria-label', label);
-
-    var sizeOptions = SHIRT_SIZES.map(function(s) {
-      return '<option value="' + s + '">' + s + '</option>';
-    }).join('');
 
     block.innerHTML =
       '<div class="reg-child-header">' +
@@ -151,45 +206,64 @@ permalink: /vbs-registration/
           : '') +
       '</div>' +
       '<div class="reg-fields">' +
+
+        // Child name — full width
         '<div class="reg-field reg-field--full">' +
           '<label for="' + id + '-name">Child\'s Full Name <span class="req" aria-hidden="true">*</span></label>' +
           '<input type="text" id="' + id + '-name" name="child_name[]" required autocomplete="off" placeholder="First and last name">' +
         '</div>' +
+
+        // Age dropdown
         '<div class="reg-field">' +
           '<label for="' + id + '-age">Age <span class="req" aria-hidden="true">*</span></label>' +
-          '<input type="number" id="' + id + '-age" name="child_age[]" required min="4" max="12" placeholder="e.g. 7">' +
+          '<select id="' + id + '-age" name="child_age[]" required>' +
+            '<option value="" disabled selected>Select age</option>' +
+            optionsHtml(AGES) +
+          '</select>' +
         '</div>' +
+
+        // Grade dropdown
         '<div class="reg-field">' +
           '<label for="' + id + '-grade">Grade <span class="req" aria-hidden="true">*</span></label>' +
-          '<input type="text" id="' + id + '-grade" name="child_grade[]" required placeholder="e.g. 2nd">' +
+          '<select id="' + id + '-grade" name="child_grade[]" required>' +
+            '<option value="" disabled selected>Select grade</option>' +
+            optionsHtml(GRADES) +
+          '</select>' +
         '</div>' +
+
+        // Shirt size dropdown
         '<div class="reg-field">' +
           '<label for="' + id + '-shirt">Shirt Size <span class="req" aria-hidden="true">*</span></label>' +
           '<select id="' + id + '-shirt" name="child_shirt[]" required>' +
             '<option value="" disabled selected>Select a size</option>' +
-            sizeOptions +
+            optionsHtml(SHIRT_SIZES) +
           '</select>' +
         '</div>' +
+
+        // Dietary notes — full width
         '<div class="reg-field reg-field--full">' +
           '<label for="' + id + '-dietary">Dietary Restrictions or Special Notes</label>' +
           '<textarea id="' + id + '-dietary" name="child_dietary[]" rows="2" placeholder="Allergies, medical notes, anything we should know..."></textarea>' +
         '</div>' +
+
+        // Photo permissions — full width
         '<div class="reg-field reg-field--full">' +
           '<fieldset class="reg-photo-fieldset">' +
             '<legend>Photo permissions for ' + label + '</legend>' +
             '<div class="reg-photo-row">' +
               '<span class="reg-photo-question">May we photograph your child? <span class="req" aria-hidden="true">*</span></span>' +
-              '<label class="reg-radio-label"><input type="radio" name="child_photo_general[]" value="Yes" required> Yes</label>' +
-              '<label class="reg-radio-label"><input type="radio" name="child_photo_general[]" value="No"> No</label>' +
+              '<label class="reg-radio-label"><input type="radio" name="child_photo_general_' + index + '" value="Yes" required> Yes</label>' +
+              '<label class="reg-radio-label"><input type="radio" name="child_photo_general_' + index + '" value="No"> No</label>' +
             '</div>' +
             '<div class="reg-photo-row">' +
               '<span class="reg-photo-question">May we use a photo in a presentation? <span class="req" aria-hidden="true">*</span></span>' +
-              '<label class="reg-radio-label"><input type="radio" name="child_photo_presentation[]" value="Yes" required> Yes</label>' +
-              '<label class="reg-radio-label"><input type="radio" name="child_photo_presentation[]" value="No"> No</label>' +
+              '<label class="reg-radio-label"><input type="radio" name="child_photo_presentation_' + index + '" value="Yes" required> Yes</label>' +
+              '<label class="reg-radio-label"><input type="radio" name="child_photo_presentation_' + index + '" value="No"> No</label>' +
             '</div>' +
           '</fieldset>' +
         '</div>' +
-      '</div>';
+
+      '</div>'; // .reg-fields
 
     // Wire up remove button
     var removeBtn = block.querySelector('.reg-remove-btn');
@@ -209,8 +283,8 @@ permalink: /vbs-registration/
   function renumberChildren() {
     var blocks = container.querySelectorAll('.reg-child-block');
     blocks.forEach(function (block, i) {
-      var label = block.querySelector('.reg-child-label');
-      if (label) label.textContent = 'Child ' + (i + 1);
+      var labelEl = block.querySelector('.reg-child-label');
+      if (labelEl) labelEl.textContent = 'Child ' + (i + 1);
     });
   }
 
@@ -239,7 +313,6 @@ permalink: /vbs-registration/
   // ── Form Submission ────────────────────────────────────────────────
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-
     errorBox.hidden = true;
 
     if (!form.checkValidity()) {
@@ -247,54 +320,63 @@ permalink: /vbs-registration/
       return;
     }
 
-    // Collect parent info
-    var ecName   = document.getElementById('ec-name').value.trim();
-    var ecEmail  = document.getElementById('ec-email').value.trim();
-    var ecPhone  = document.getElementById('ec-phone').value.trim();
-    var ecPickup = document.getElementById('ec-pickup').value.trim();
+    // Parent info
+    var parentName  = document.getElementById('parent-name').value.trim();
+    var parentEmail = document.getElementById('parent-email').value.trim();
+    var parentPhone = document.getElementById('parent-phone').value.trim();
+    var ecPickup    = document.getElementById('ec-pickup').value.trim();
+
+    // Emergency contact — use parent info if "same" is checked
+    var same = ecSameChk.checked;
+    var ecName  = same ? parentName  : ecNameEl.value.trim();
+    var ecEmail = same ? parentEmail : ecEmailEl.value.trim();
+    var ecPhone = same ? parentPhone : ecPhoneEl.value.trim();
 
     // Collect child blocks
-    var blocks = container.querySelectorAll('.reg-child-block');
+    var blocks   = container.querySelectorAll('.reg-child-block');
     var children = [];
 
     blocks.forEach(function (block) {
-      var names        = block.querySelectorAll('[name="child_name[]"]');
-      var ages         = block.querySelectorAll('[name="child_age[]"]');
-      var grades       = block.querySelectorAll('[name="child_grade[]"]');
-      var shirts       = block.querySelectorAll('[name="child_shirt[]"]');
-      var dietaries    = block.querySelectorAll('[name="child_dietary[]"]');
-      var photoGeneral = block.querySelectorAll('[name="child_photo_general[]"]:checked');
-      var photoPresent = block.querySelectorAll('[name="child_photo_presentation[]"]:checked');
+      var nameEl     = block.querySelector('[name="child_name[]"]');
+      var ageEl      = block.querySelector('[name="child_age[]"]');
+      var gradeEl    = block.querySelector('[name="child_grade[]"]');
+      var shirtEl    = block.querySelector('[name="child_shirt[]"]');
+      var dietaryEl  = block.querySelector('[name="child_dietary[]"]');
+      var photoGenEl = block.querySelector('[name^="child_photo_general_"]:checked');
+      var photoPreEl = block.querySelector('[name^="child_photo_presentation_"]:checked');
 
       children.push({
-        name:              names[0]     ? names[0].value.trim()     : '',
-        age:               ages[0]      ? ages[0].value.trim()      : '',
-        grade:             grades[0]    ? grades[0].value.trim()    : '',
-        shirt:             shirts[0]    ? shirts[0].value.trim()    : '',
-        dietary:           dietaries[0] ? dietaries[0].value.trim() : '',
-        photo_general:     photoGeneral[0] ? photoGeneral[0].value  : '',
-        photo_presentation:photoPresent[0] ? photoPresent[0].value  : ''
+        name:               nameEl    ? nameEl.value.trim()    : '',
+        age:                ageEl     ? ageEl.value.trim()     : '',
+        grade:              gradeEl   ? gradeEl.value.trim()   : '',
+        shirt:              shirtEl   ? shirtEl.value.trim()   : '',
+        dietary:            dietaryEl ? dietaryEl.value.trim() : '',
+        photo_general:      photoGenEl ? photoGenEl.value      : '',
+        photo_presentation: photoPreEl ? photoPreEl.value      : ''
       });
     });
 
     var payload = {
-      ec_name:   ecName,
-      ec_email:  ecEmail,
-      ec_phone:  ecPhone,
-      ec_pickup: ecPickup,
-      children:  children,
+      parent_name:  parentName,
+      parent_email: parentEmail,
+      parent_phone: parentPhone,
+      ec_name:      ecName,
+      ec_email:     ecEmail,
+      ec_phone:     ecPhone,
+      ec_pickup:    ecPickup,
+      children:     children,
       submitted_on: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
 
     // Disable button to prevent double-submit
-    submitBtn.disabled = true;
+    submitBtn.disabled    = true;
     submitBtn.textContent = 'Submitting…';
 
     fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode:   'no-cors',
+      method:  'POST',
+      mode:    'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body:    JSON.stringify(payload)
     })
     .then(function () {
       form.hidden       = true;
@@ -303,14 +385,14 @@ permalink: /vbs-registration/
       if (typeof gtag === 'function') {
         gtag('event', 'vbs_registration_submitted', {
           event_category: 'VBS Registration',
-          event_label: 'Form Submit',
-          value: children.length
+          event_label:    'Form Submit',
+          value:          children.length
         });
       }
     })
     .catch(function () {
-      errorBox.hidden  = false;
-      submitBtn.disabled  = false;
+      errorBox.hidden       = false;
+      submitBtn.disabled    = false;
       submitBtn.textContent = 'Submit Registration →';
       errorBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
