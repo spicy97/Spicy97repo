@@ -35,8 +35,7 @@ permalink: /about/
           for the first time, you are warmly welcome here.
         </p>
         <p>
-          We'd love for you to come for VBS — and we hope you'll stick around to meet us
-          on Sunday, August 23rd, for our church service and family backyard party!
+          We'd love for you to come for VBS — and we hope you'll stick around on Sunday, August 23rd (10:30 AM – 1:00 PM) for our worship service followed by a joyful festival with a bounce house and great food for the whole family!
         </p>
       </div>
 
@@ -104,14 +103,14 @@ permalink: /about/
 
       <article class="card card--yellow">
         <span class="card-icon" aria-hidden="true">🏡</span>
-        <h3>Sunday Backyard Party</h3>
-        <p>Day 3 ends with a full family celebration — bounce house, food, and fun for kids and parents alike.</p>
+        <h3>Sunday Festival</h3>
+        <p>Day 3 ends with a joyful festival — join us for service, a bounce house, and great food for the entire family!</p>
       </article>
 
       <article class="card card--green">
         <span class="card-icon" aria-hidden="true">⛪</span>
         <h3>Sunday Service</h3>
-        <p>Join us for our 10:30 AM service on August 23rd and experience worship at Christ Central Buffalo firsthand.</p>
+        <p>Join us for Sunday worship at 10:30 AM on August 23rd, followed by festivities until 1:00 PM. Experience Christ Central Buffalo firsthand!</p>
       </article>
     </div>
   </div>

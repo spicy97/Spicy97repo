@@ -75,8 +75,8 @@ permalink: /vbs/
       <article class="schedule-day">
         <div class="day-label">🏡 Day 3 — Sunday, August 23</div>
         <div class="day-date">August 23, 2026</div>
-        <div class="day-time">⛪ 10:30 AM — Church Service, followed by Backyard Party</div>
-        <p>Join us for our 10:30 AM Sunday service, then celebrate together in the backyard with food, a bounce house, and fun for the <em>entire family</em>!</p>
+        <div class="day-time">⏰ 10:30 AM – 1:00 PM</div>
+        <p>Join us for Sunday worship at 10:30 AM, followed by a joyful festival with a bounce house and great food for the <em>entire family</em>!</p>
       </article>
     </div>
   </div>
@@ -112,7 +112,7 @@ permalink: /vbs/
       <article class="card card--green">
         <span class="card-icon" aria-hidden="true">🍕</span>
         <h3>Lunch &amp; Snacks</h3>
-        <p>Lunch and snacks are provided on Friday and Saturday. No need to pack food!</p>
+        <p>Lunch and snacks are provided on Friday and Saturday. No need to pack food! On Sunday, join us for a joyful festival with service, a bounce house, and great food for families.</p>
       </article>
 
       <article class="card card--pink">
@@ -148,7 +148,7 @@ permalink: /vbs/
           </tr>
           <tr>
             <th scope="row">Times</th>
-            <td>Fri &amp; Sat: 9:00 AM – 3:00 PM · Sun: 10:30 AM service + backyard party</td>
+            <td>Fri &amp; Sat: 9:00 AM – 3:00 PM · Sun: 10:30 AM – 1:00 PM (worship service + festival)</td>
           </tr>
           <tr>
             <th scope="row">Age Range</th>

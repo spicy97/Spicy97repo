@@ -103,7 +103,7 @@ permalink: /contact/
             <p style="margin-top: 0.75rem; color: #555566; line-height: 1.65;">
               Friday and Saturday: lunch and snacks are provided — no need to pack food!
               Bring a water bottle, comfortable clothes for activities, and any allergy medications if needed.
-              Sunday: just come as you are and enjoy the party!
+              Sunday (10:30 AM – 1:00 PM): join us for worship at 10:30 AM followed by a joyful festival with a bounce house and great food for families!
             </p>
           </details>
 

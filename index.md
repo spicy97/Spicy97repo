@@ -69,7 +69,7 @@ permalink: /
         <div class="info-card__icon" aria-hidden="true">⏰</div>
         <div class="info-card__label">TIME</div>
         <div class="info-card__value">Fri &amp; Sat: 9 AM – 3 PM</div>
-        <div class="info-card__sub">Sun: 10:30 AM service + party</div>
+        <div class="info-card__sub">Sun: 10:30 AM – 1:00 PM (worship + festival)</div>
       </div>
 
       <div class="info-card info-card--green">
@@ -133,7 +133,7 @@ permalink: /
     <h2 id="cta-heading" class="party-cta-band__line2">LEAVE FILLED WITH <span class="joy-word">JOY!</span></h2>
     <a href="/vbs-registration/"
        class="btn btn-party">
-      🎉 Register Today — $5 Per Child at the Door
+      🎉 Register Today — $5 Per Child
     </a>
     <div class="party-cta-band__contact">
       Questions? Contact
