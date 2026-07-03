@@ -63,6 +63,18 @@ Use Act mode when:
 
 ---
 
-## 6. Sources
+## 6. CI/CD Debugging Guidelines (Learned from Production)
+
+When a GitHub Actions build (or any CI/CD pipeline) fails:
+
+1. **Get the exact error first.** Before making any code changes, read the full build log and identify the specific error message. Do not guess at the cause based on symptoms alone.
+2. **Determine if the failure predates your changes.** Check `git log` and the Actions run history to see whether the failure existed before your last commit. If the previous run passed and yours failed, your change is the cause — focus there.
+3. **Use `--trace` for Jekyll builds.** Add `bundle exec jekyll build --trace` to get the full include stack on failure — it shows the exact file and line that caused the error.
+4. **Consider environmental causes.** A failure that looks like a code bug may be caused by DNS propagation, certificate provisioning, or a GitHub Pages infrastructure issue. Check Settings → Pages and the GitHub Status page before assuming code is the problem.
+5. **Fix one thing at a time.** After each fix, push and wait for the build result before making additional changes. Batching multiple speculative fixes makes it harder to identify what actually resolved the issue.
+
+---
+
+## 7. Sources
 
 1. **Cline Docs – Plan & Act Mode**: https://docs.cline.bot/core-workflows/plan-and-act

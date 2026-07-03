@@ -67,14 +67,22 @@ Confirm full understanding of a complex prompt before acting:
 
 ---
 
-## 6. Project Integrity
+## 6. Debugging & Error Diagnosis
+
+- **Get the exact error before attempting fixes.** When a build or test fails, always retrieve the full error log and identify the specific error message before writing any code. Speculative fixes based on guessing the cause waste effort and introduce new issues. Prompt example: `"Show me the exact error from the build log before we try to fix anything."`
+- **Confirm whether the failure is new or pre-existing.** Before debugging, check whether the failure existed before the most recent change. If it did, the fix may be unrelated to the current work. Prompt example: `"Was this failing before my last commit? Check the CI history."`
+- **Validate the fix before moving on.** After applying a fix, wait for and confirm the build passes before making additional changes. Do not stack multiple speculative fixes. Prompt example: `"Wait for the build result before making any other changes."`
+
+---
+
+## 7. Project Integrity
 
 - Before suggesting structural or dependency changes: `"Check the existing project files and structure first before recommending any changes."`
 - Set clear boundaries: `"Do not modify any files outside of [directory]. Ask me first if you think you need to."`
 
 ---
 
-## 7. Sources
+## 8. Sources
 
 1. **cline_docs – Prompting Guide**: https://github.com/nickbaumann98/cline_docs/blob/766f777a6593fcd9dd72dae1628c6b7d5652ec7c/prompting/README.md
 2. **Cline Blog – Chapter 2: Cline Rules**: https://cline.bot/blog/cline-rules

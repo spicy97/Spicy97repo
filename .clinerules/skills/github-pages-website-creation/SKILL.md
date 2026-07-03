@@ -260,12 +260,16 @@ description: Use this skill when creating, configuring, or deploying a website u
 - Verify your `Gemfile` has the correct dependencies for Jekyll builds.
 - If build fails due to unsupported plugins, switch to a GitHub Actions workflow that builds the site with full plugin support and deploys the static output.
 - Test your Jekyll build locally with `bundle exec jekyll build` before pushing.
+- **Jekyll executes Liquid tags inside HTML comments** — `{% %}` and `{{ }}` tags inside `<!-- -->` HTML comments are NOT ignored — Jekyll executes them before parsing HTML. Never put live Liquid syntax (e.g., `{% include footer.html %}`) inside an HTML comment; it will actually run and can cause infinite recursion ("stack level too deep"). Use plain English descriptions in comments instead.
+- **JSON-LD structured data needs `{% raw %}`** — Wrap any `<script type="application/ld+json">` blocks in `{% raw %}{% endraw %}` tags to prevent Jekyll's Liquid parser from misinterpreting the JSON's `{ }` braces as Liquid template expressions. Without this, Jekyll will throw a Liquid parse error and the build will fail.
+- **"Stack level too deep"** — Almost always caused by a circular include/render loop. Most common cause: an `_includes/` file contains `{% include itself.html %}` in a comment (see above), or an include file accidentally has YAML front matter with `layout:` set (which causes Jekyll to render the include as a full page, re-invoking the layout). Check includes for YAML front matter and remove any `{% include %}` / `{% %}` tags from HTML comments.
 
 ### Custom Domain Issues
 - Confirm DNS records are propagated (can take up to 48 hours).
 - Verify the `CNAME` file contains only your domain name with no extra characters or whitespace.
 - Use the **GitHub Pages health check** in your repository's Settings > Pages to diagnose DNS and certificate issues.
 - Ensure your custom domain is **verified** in your GitHub account settings.
+- **Deploy jobs fail until DNS verification completes** — When a custom domain is first configured (or DNS records are changed), GitHub Actions deploy jobs may fail with exit code 1 even when the build step passes. This happens because GitHub's backend hasn't finished verifying the domain and provisioning the TLS certificate yet. **Fix:** Check Settings → Pages — if it shows "DNS check in progress" or a certificate error, wait for it to resolve (minutes to 48 hours), then manually re-run the failed workflow from the Actions tab ("Re-run failed jobs"). Do not assume the failure is a code bug until you've confirmed the domain shows a green "DNS check successful" status.
 
 ### General Debugging
 - Use the GitHub Pages health check in Settings > Pages.
