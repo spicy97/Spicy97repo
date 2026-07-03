@@ -1,34 +1,28 @@
 <!--
-  default.html — Master page layout template
-  ════════════════════════════════════════════════════════════════════
+  default.html - Master page layout template
 
   What is a Jekyll layout?
   Every page on this site uses "layout: default" in its front matter.
-  Jekyll wraps that page's content inside this file at the {{ content }} tag.
-  Think of this file as the outer shell — header, nav, footer, scripts —
+  Jekyll wraps that page's content inside this file at the content tag.
+  Think of this file as the outer shell (header, nav, footer, scripts)
   that every page shares. You change something here once, and it updates everywhere.
 
   File path convention: _layouts/default.html
   Jekyll looks for layout files in the _layouts/ folder automatically.
 
-  Liquid tags used here:
-    page.title      — The "title:" value from the page's front matter
-    site.title      — The "title:" value from _config.yml
-    page.description— The "description:" value from the page's front matter
-    site.description— The "description:" value from _config.yml
-    if/endif        — Conditional block (e.g., if page.url == '/')
-    relative_url    — Filter that outputs a URL relative to the site's base path
-                      (important when the site is hosted in a subfolder)
-    seo             — Jekyll SEO Tag plugin: injects all meta/OG/Twitter tags
-    include         — Injects a file from the _includes/ folder
-    content         — The rendered content of the current page (injected here)
-    page.url        — The URL path of the current page (e.g., "/vbs/")
+  Liquid variables used here:
+    page.title       - The "title:" value from the page's front matter
+    site.title       - The "title:" value from _config.yml
+    page.description - The "description:" value from the page's front matter
+    site.description - The "description:" value from _config.yml
+    page.url         - The URL path of the current page (e.g., "/vbs/")
 
   CHANGE LOG (for easy rollback reference):
-    2026-07-03 — Removed Google Analytics (GA4) entirely. No tracking scripts.
+    2026-07-03 - Removed Google Analytics (GA4) entirely. No tracking scripts.
                  Added theme-color meta tag (#323095 = navy, matches header).
                  Lilita One is now self-hosted via @font-face in vbs.scss
                  (Google Fonts preconnect/link tags removed).
+                 Removed Liquid syntax from comments to avoid parse errors.
 -->
 <!DOCTYPE html>
 <html lang="en">
