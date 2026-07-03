@@ -214,7 +214,10 @@ permalink: /vbs/
 <!-- JSON-LD Event structured data: tells Google this is a local event.
      Google uses this to show a rich result (event card with dates, location, and cost)
      directly in search results — significant visibility boost for a local event.
-     See: https://schema.org/Event and https://developers.google.com/search/docs/appearance/structured-data/event -->
+     See: https://schema.org/Event and https://developers.google.com/search/docs/appearance/structured-data/event
+     NOTE: {% raw %} / {% endraw %} tags wrap this block to prevent Jekyll's Liquid
+     templating engine from misinterpreting the { } characters in the JSON as Liquid tags. -->
+{% raw %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -253,8 +256,9 @@ permalink: /vbs/
   },
   "audience": {
     "@type": "Audience",
-    "audienceType": "Children ages 4–12"
+    "audienceType": "Children ages 4-12"
   },
   "url": "https://vbs.christcentralbuffalo.com/vbs/"
 }
 </script>
+{% endraw %}
