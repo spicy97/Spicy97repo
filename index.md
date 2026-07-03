@@ -143,5 +143,8 @@ permalink: /
       &nbsp;·&nbsp;
       <a href="https://christcentralbuffalo.com" target="_blank" rel="noopener noreferrer">christcentralbuffalo.com</a>
     </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.65;">
+      Already registered? <a href="/pay/" style="color: inherit; text-decoration: underline;">Pay the $5 fee here →</a>
+    </p>
   </div>
 </section>
