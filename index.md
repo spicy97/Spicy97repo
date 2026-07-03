@@ -139,7 +139,7 @@ permalink: /
       Questions? Contact
       <a href="mailto:jonathan.choi@christcentralbuffalo.com">jonathan.choi@christcentralbuffalo.com</a>
       &nbsp;·&nbsp;
-      <a href="tel:4257700908">(425) 770-0908</a>
+      <a href="tel:7162180777">716-218-0777</a>
       &nbsp;·&nbsp;
       <a href="https://christcentralbuffalo.com" target="_blank" rel="noopener noreferrer">christcentralbuffalo.com</a>
     </div>

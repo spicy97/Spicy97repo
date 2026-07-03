@@ -160,7 +160,7 @@ permalink: /vbs/
           </tr>
           <tr>
             <th scope="row">Location</th>
-            <td>Christ Central Buffalo — <a href="/contact/">Contact us for address</a></td>
+            <td>Christ Central Buffalo — 1407 N Forest Rd, Williamsville, NY 14221</td>
           </tr>
           <tr>
             <th scope="row">Registration</th>

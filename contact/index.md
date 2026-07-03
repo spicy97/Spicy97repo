@@ -54,6 +54,16 @@ permalink: /contact/
           </div>
 
           <div class="contact-row">
+            <span aria-hidden="true">📍</span>
+            <div>
+              <address style="font-style: normal;">
+                1407 N Forest Rd<br>
+                Williamsville, NY 14221
+              </address>
+            </div>
+          </div>
+
+          <div class="contact-row">
             <span aria-hidden="true">🌐</span>
             <div>
               <a href="https://christcentralbuffalo.com" target="_blank" rel="noopener noreferrer">
