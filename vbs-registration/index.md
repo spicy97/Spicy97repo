@@ -23,6 +23,23 @@ permalink: /vbs-registration/
   <div class="container">
     <div class="reg-form-wrap">
 
+      <!-- Already registered? Pay here -->
+      <div class="reg-giving-box" style="margin-bottom: 2.5rem;">
+        <p class="reg-giving-title">💳 Already Registered? Pay Your $5 Per Child Fee</p>
+        <p class="reg-giving-desc">You can pay online right now — no cash needed!</p>
+        <a href="https://collectcheckout.com/collect-checkout/fields?cartId=c71d9f4d-cec7-4c2a-b525-bebde6e3dafb"
+           class="btn btn-primary"
+           target="_blank"
+           rel="noopener noreferrer">
+          Pay Online Now →
+        </a>
+        <div class="reg-giving-memo">
+          <p><strong>In the memo / note field, please write:</strong></p>
+          <p class="reg-giving-memo-example">[Child's name(s)] — VBS 2026</p>
+          <p class="reg-giving-memo-eg">e.g. "Emma &amp; Noah Smith — VBS 2026"</p>
+        </div>
+      </div>
+
       <div class="reg-intro">
         <h2 id="register-heading" class="section-title" style="text-align:center;">Sign Up Your Child(ren)</h2>
         <p style="text-align:center; color:#555566; margin-bottom:2.5rem;">
