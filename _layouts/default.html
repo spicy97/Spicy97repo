@@ -12,17 +12,17 @@
   Jekyll looks for layout files in the _layouts/ folder automatically.
 
   Liquid tags used here:
-    {{ page.title }}      — The "title:" value from the page's front matter
-    {{ site.title }}      — The "title:" value from _config.yml
-    {{ page.description }}— The "description:" value from the page's front matter
-    {{ site.description }}— The "description:" value from _config.yml
-    {% if ... %}{% endif %}— Conditional block
-    {{ ... | relative_url }}— Outputs a URL relative to the site's base path
-                              (important when the site is hosted in a subfolder)
-    {% seo %}             — Jekyll SEO Tag plugin: injects all meta/OG/Twitter tags
-    {% include ... %}     — Injects a file from the _includes/ folder
-    {{ content }}         — The rendered content of the current page (injected here)
-    {{ page.url }}        — The URL path of the current page (e.g., "/vbs/")
+    page.title      — The "title:" value from the page's front matter
+    site.title      — The "title:" value from _config.yml
+    page.description— The "description:" value from the page's front matter
+    site.description— The "description:" value from _config.yml
+    if/endif        — Conditional block (e.g., if page.url == '/')
+    relative_url    — Filter that outputs a URL relative to the site's base path
+                      (important when the site is hosted in a subfolder)
+    seo             — Jekyll SEO Tag plugin: injects all meta/OG/Twitter tags
+    include         — Injects a file from the _includes/ folder
+    content         — The rendered content of the current page (injected here)
+    page.url        — The URL path of the current page (e.g., "/vbs/")
 
   CHANGE LOG (for easy rollback reference):
     2026-07-03 — Removed Google Analytics (GA4) entirely. No tracking scripts.
