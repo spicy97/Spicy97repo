@@ -27,7 +27,7 @@ permalink: /vbs-registration/
       <div class="reg-giving-box" style="margin-bottom: 2.5rem;">
         <p class="reg-giving-title">💳 Already Registered? Pay Your $5 Per Child Fee</p>
         <p class="reg-giving-desc">You can pay online right now — no cash needed!</p>
-        <a href="https://collectcheckout.com/collect-checkout/fields?cartId=c71d9f4d-cec7-4c2a-b525-bebde6e3dafb"
+        <a href="https://collectcheckout.com/r/3g2uic1gp65j6n95rz9vyqlx8gih22"
            class="btn btn-primary"
            target="_blank"
            rel="noopener noreferrer">
@@ -57,7 +57,7 @@ permalink: /vbs-registration/
           <div class="reg-giving-box">
             <p class="reg-giving-title">💳 Pay Your $5 Per Child Registration Fee</p>
             <p class="reg-giving-desc">You can pay online through our giving page — no cash needed!</p>
-            <a href="https://collectcheckout.com/collect-checkout/fields?cartId=c71d9f4d-cec7-4c2a-b525-bebde6e3dafb"
+            <a href="https://collectcheckout.com/r/3g2uic1gp65j6n95rz9vyqlx8gih22"
                class="btn btn-primary"
                target="_blank"
                rel="noopener noreferrer">
