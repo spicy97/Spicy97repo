@@ -1,14 +1,54 @@
+<!--
+  popup.html — VBS announcement popup modal include
+  ════════════════════════════════════════════════════════════════════
+
+  This file is a Jekyll "include" — injected into every page via
+  {% include popup.html %} near the top of _layouts/default.html.
+
+  Behavior (controlled by assets/js/popup.js):
+  - On first page visit in a browser session, the popup becomes visible
+    by removing the "hidden" attribute from #vbs-popup.
+  - sessionStorage is used to track whether the popup has already been shown.
+    sessionStorage persists for the duration of the browser tab session only
+    (unlike localStorage, which persists indefinitely). This means the popup
+    shows once per tab session, not once per browser install.
+  - Clicking the ✕ button, "Not right now" button, or the "Save Your Spot Today!"
+    link all close the popup.
+
+  Accessibility notes:
+  - role="dialog" tells screen readers this is an interactive dialog box.
+  - aria-modal="true" tells screen readers to treat content outside the dialog
+    as inert (not focusable) while the dialog is open.
+  - aria-labelledby="popup-heading" links the dialog to its visible title for
+    screen reader announcements.
+  - aria-describedby="popup-desc" links the dialog to its description text.
+  - "hidden" attribute starts the popup invisible. JavaScript removes it to show it.
+    Using the HTML "hidden" attribute (vs CSS display:none) is more accessible
+    because it also communicates the hidden state to assistive technologies.
+-->
 <!-- VBS Popup Modal — appears once per browser session via sessionStorage -->
 <div id="vbs-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-heading" aria-describedby="popup-desc" hidden>
   <div class="popup-card">
+
+    <!-- Close button: ✕ symbol closes the popup
+         aria-label provides a text description for screen readers since the
+         visible label is just the × character. -->
     <button class="popup-close" id="popup-close" aria-label="Close popup">&times;</button>
 
+    <!-- Decorative emoji — aria-hidden="true" hides it from screen readers
+         since it's purely visual and doesn't add meaningful content. -->
     <div class="popup-confetti" aria-hidden="true">🎉</div>
 
+    <!-- Dialog heading — referenced by aria-labelledby above -->
     <h2 id="popup-heading" class="popup-title">3-Day Surprise Party VBS</h2>
+
+    <!-- Event dates -->
     <p class="popup-dates">Friday–Sunday &nbsp;·&nbsp; August 21–23, 2026</p>
+
+    <!-- Dialog description — referenced by aria-describedby above -->
     <p id="popup-desc" class="popup-tagline">Every day brings a new surprise, a new story, and a new reminder that God's love is for everyone.</p>
 
+    <!-- Quick info bullet list -->
     <ul class="popup-details">
       <li>🎨 Games, crafts, music &amp; snacks</li>
       <li>📖 Bible stories about God's love</li>
@@ -17,11 +57,17 @@
       <li>🎪 Sun 10:30 AM–1:00 PM: worship service + joyful festival with bounce house &amp; food!</li>
     </ul>
 
+    <!-- Primary CTA: clicking the link also immediately hides the popup
+         so users don't return to find it still open. -->
     <a href="/vbs-registration/"
        class="btn btn-primary popup-cta"
        onclick="document.getElementById('vbs-popup').setAttribute('hidden', '')">
       Save Your Spot Today!
     </a>
+
+    <!-- Dismiss button: closes the popup without navigating away.
+         Wired up in assets/js/popup.js. -->
     <button class="popup-dismiss" id="popup-dismiss">Not right now</button>
+
   </div>
 </div>

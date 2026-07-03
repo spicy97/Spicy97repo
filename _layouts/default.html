@@ -1,39 +1,76 @@
+<!--
+  default.html — Master page layout template
+  ════════════════════════════════════════════════════════════════════
+
+  What is a Jekyll layout?
+  Every page on this site uses "layout: default" in its front matter.
+  Jekyll wraps that page's content inside this file at the {{ content }} tag.
+  Think of this file as the outer shell — header, nav, footer, scripts —
+  that every page shares. You change something here once, and it updates everywhere.
+
+  File path convention: _layouts/default.html
+  Jekyll looks for layout files in the _layouts/ folder automatically.
+
+  Liquid tags used here:
+    {{ page.title }}      — The "title:" value from the page's front matter
+    {{ site.title }}      — The "title:" value from _config.yml
+    {{ page.description }}— The "description:" value from the page's front matter
+    {{ site.description }}— The "description:" value from _config.yml
+    {% if ... %}{% endif %}— Conditional block
+    {{ ... | relative_url }}— Outputs a URL relative to the site's base path
+                              (important when the site is hosted in a subfolder)
+    {% seo %}             — Jekyll SEO Tag plugin: injects all meta/OG/Twitter tags
+    {% include ... %}     — Injects a file from the _includes/ folder
+    {{ content }}         — The rendered content of the current page (injected here)
+    {{ page.url }}        — The URL path of the current page (e.g., "/vbs/")
+
+  CHANGE LOG (for easy rollback reference):
+    2026-07-03 — Removed Google Analytics (GA4) entirely. No tracking scripts.
+                 Added theme-color meta tag (#323095 = navy, matches header).
+                 Lilita One is now self-hosted via @font-face in vbs.scss
+                 (Google Fonts preconnect/link tags removed).
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Page title: "Page Title | Site Title" if a page title exists, else just site title -->
   <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+  <!-- Meta description: uses the page's own description if set, falls back to site description.
+       This text appears in Google search results under the page title. -->
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
-  <!-- Favicon -->
+  <!-- theme-color: sets the browser chrome color on Android Chrome and when added to home screen.
+       Uses the navy value matching the sticky header background ($navy in vbs.scss). -->
+  <meta name="theme-color" content="#323095">
+
+  <!-- Favicon: the small icon shown in browser tabs and bookmarks -->
   <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+  <!-- Apple Touch Icon: the icon used when someone adds this site to their iPhone home screen -->
   <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
 
-  <!-- Google Fonts: Lilita One — bold, rounded, fun display font for kids' event titles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
+  <!-- Main stylesheet: Jekyll compiles _sass/vbs.scss into this file at build time.
+       Lilita One font is self-hosted via @font-face in vbs.scss — no external font request needed.
+       relative_url ensures this works whether the site is at / or a subfolder. -->
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
-  <!-- SEO -->
+  <!-- SEO plugin tag: outputs all <meta> SEO tags, Open Graph (Facebook/LinkedIn),
+       and Twitter Card tags automatically based on _config.yml and page front matter.
+       Provided by the jekyll-seo-tag gem (listed in Gemfile and _config.yml plugins). -->
   {% seo %}
 
-  <!-- Google Analytics 4 -->
-  <!-- TODO: Replace G-XXXXXXXXXX with your real GA4 Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
 </head>
 <body>
 
-  <!-- Confetti overlay — fixed layer above page content, below popup -->
+  <!-- Confetti overlay: a fixed-position layer of animated confetti pieces.
+       Sits above all page content (z-index: 9998 in vbs.scss) but below the popup (9999).
+       The 20 .confetti-piece divs are each styled and animated with CSS @keyframes in vbs.scss.
+       aria-hidden="true" hides this purely decorative layer from screen readers.
+       Note: animations are disabled automatically when the OS/browser has
+       "prefers-reduced-motion: reduce" set (handled in vbs.scss). -->
   <div class="confetti-overlay" aria-hidden="true">
     <div class="confetti-piece"></div>
     <div class="confetti-piece"></div>
@@ -57,43 +94,71 @@
     <div class="confetti-piece"></div>
   </div>
 
-  <!-- VBS Popup Modal -->
+  <!-- VBS Popup Modal: injected from _includes/popup.html.
+       Shown once per browser session (controlled by assets/js/popup.js). -->
   {% include popup.html %}
 
-  <!-- Header -->
+  <!-- Site header: sticky navigation bar (stays at top while scrolling).
+       z-index: 100 in vbs.scss keeps it above page content but below popup/confetti. -->
   <header class="site-header">
     <div class="header-inner">
+
+      <!-- Logo link: clicking the logo/church name always goes back to the home page -->
       <a class="site-logo" href="{{ '/' | relative_url }}">
+        <!-- onerror hides the image if logo.png is missing — prevents broken image icon -->
         <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Christ Central Buffalo logo" width="48" height="48" onerror="this.style.display='none'">
         <span class="site-title">Christ Central Buffalo</span>
       </a>
 
+      <!-- Hamburger menu button: visible only on mobile (hidden on desktop via CSS).
+           aria-label provides a text description for screen readers.
+           aria-expanded="false" tells screen readers the menu is currently closed.
+           aria-controls="site-nav" links this button to the nav it controls.
+           JavaScript in assets/js/nav.js toggles aria-expanded and the .is-open class. -->
       <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
+        <!-- Three <span> elements form the hamburger icon lines.
+             CSS in vbs.scss animates them into an ✕ when aria-expanded="true". -->
         <span></span><span></span><span></span>
       </button>
 
+      <!-- Main navigation: hidden on mobile by default, shown when hamburger is clicked.
+           aria-label distinguishes this from the footer nav for screen readers.
+           id="site-nav" matches the aria-controls on the hamburger button above. -->
       <nav class="site-nav" id="site-nav" aria-label="Main navigation">
         <ul>
+          <!-- Each nav link checks if it's the active page using page.url.
+               If active: adds class="active" and aria-current="page" for accessibility.
+               aria-current="page" tells screen readers "this link is the current page." -->
           <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active" aria-current="page"{% endif %}>Home</a></li>
           <li><a href="{{ '/vbs/' | relative_url }}" {% if page.url contains '/vbs' %}class="active" aria-current="page"{% endif %}>VBS Event</a></li>
           <li><a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about' %}class="active" aria-current="page"{% endif %}>About Our Church</a></li>
           <li><a href="{{ '/contact/' | relative_url }}" {% if page.url contains '/contact' %}class="active" aria-current="page"{% endif %}>Contact</a></li>
         </ul>
+        <!-- Call-to-action button in the nav — links directly to the registration page -->
         <a class="nav-cta" href="/vbs-registration/">Register Now</a>
       </nav>
+
     </div>
   </header>
 
-  <!-- Main Content -->
+  <!-- Main content area: Jekyll injects the current page's content here.
+       id="main-content" is the target for the skip link at the top of each page
+       (class="skip-link"), which lets keyboard users jump past the nav. -->
   <main id="main-content">
     {{ content }}
   </main>
 
-  <!-- Footer -->
+  <!-- Footer: injected from _includes/footer.html -->
   {% include footer.html %}
 
-  <!-- Scripts -->
+  <!-- Scripts: loaded at the bottom of <body> with "defer" so they don't block page rendering.
+       "defer" means the browser downloads the script in the background while parsing HTML,
+       then executes it after the full page is parsed — same effect as putting scripts at
+       the bottom of <body>, but cleaner and slightly faster. -->
+  <!-- Popup logic: shows/hides the VBS popup modal using sessionStorage -->
   <script src="{{ '/assets/js/popup.js' | relative_url }}" defer></script>
+  <!-- Nav logic: toggles the mobile hamburger menu open/closed -->
   <script src="{{ '/assets/js/nav.js' | relative_url }}" defer></script>
+
 </body>
 </html>

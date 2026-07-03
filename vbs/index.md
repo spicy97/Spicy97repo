@@ -1,13 +1,21 @@
 ---
+# Front matter — Jekyll reads this YAML block to configure the page.
+# layout: which template wraps this page (_layouts/default.html)
+# title: shown in the browser tab; also used by the SEO plugin for <title> and OG tags
+# description: the meta description shown in Google search results (~155 chars ideal)
+# permalink: the exact URL path for this page (/vbs/)
 layout: default
 title: VBS Event
 description: "Full details for the 3-Day Surprise Party VBS at Christ Central Buffalo — August 21–23, 2026. Schedule, activities, cost, and registration information."
 permalink: /vbs/
 ---
 
+<!-- Skip link: allows keyboard-only users to jump straight to the main content,
+     bypassing the header/nav. The link is visually hidden until focused (see .skip-link in vbs.scss). -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Page Header -->
+<!-- Page Header: gradient banner at the top of every inner page.
+     Uses the .page-header class (styled in vbs.scss) for the navy→blue gradient. -->
 <header class="page-header">
   <div class="container">
     <span class="hero-eyebrow" style="margin-bottom:1rem; display:inline-block;">🎉 VBS 2026</span>
@@ -16,9 +24,10 @@ permalink: /vbs/
   </div>
 </header>
 
+<!-- Decorative rainbow stripe between the header and first section -->
 <div class="color-stripe" aria-hidden="true"></div>
 
-<!-- Theme Section -->
+<!-- Theme Section: describes the VBS theme and includes the theme Bible verse -->
 <section class="section" aria-labelledby="theme-heading">
   <div class="container">
     <div class="section-intro">
@@ -39,6 +48,8 @@ permalink: /vbs/
       </p>
     </div>
 
+    <!-- Theme verse block: styled like a dark card with the scripture quote.
+         role="complementary" marks this as supplemental content for screen readers. -->
     <div class="verse-block" role="complementary" aria-label="Theme verse">
       <blockquote>
         "Then Levi held a great banquet for Jesus at his house, and a large crowd of tax collectors
@@ -49,7 +60,8 @@ permalink: /vbs/
   </div>
 </section>
 
-<!-- Schedule -->
+<!-- Schedule Section: three day-by-day schedule cards.
+     .highlight-band gives the section a polka-dot patterned background (see vbs.scss). -->
 <section class="section highlight-band" aria-labelledby="schedule-heading">
   <div class="container">
     <div class="section-intro">
@@ -57,6 +69,8 @@ permalink: /vbs/
       <p class="section-subtitle">Three full days of fun, faith, and friendship. Come for one day or all three!</p>
     </div>
 
+    <!-- .schedule is a flex column container; each .schedule-day has a colored left border
+         (Day 1=blue, Day 2=red, Day 3=green via nth-child in vbs.scss) -->
     <div class="schedule">
       <article class="schedule-day">
         <div class="day-label">🎉 Day 1 — Friday, August 21</div>
@@ -82,7 +96,9 @@ permalink: /vbs/
   </div>
 </section>
 
-<!-- Activities -->
+<!-- Activities Section: six activity cards in a responsive grid.
+     .card-grid goes 1→2→3 columns as the screen gets wider (see vbs.scss).
+     Each card uses a color modifier (card--blue, --red, etc.) for the top border accent. -->
 <section class="section" aria-labelledby="activities-heading">
   <div class="container">
     <div class="section-intro">
@@ -130,7 +146,8 @@ permalink: /vbs/
   </div>
 </section>
 
-<!-- Info Table -->
+<!-- Info Table Section: structured event details in a two-column table.
+     .info-table styles are in vbs.scss; scope="row" on <th> improves screen reader navigation. -->
 <section class="section highlight-band" aria-labelledby="info-heading">
   <div class="container">
     <div style="max-width: 760px; margin: 0 auto;">
@@ -180,16 +197,12 @@ permalink: /vbs/
   </div>
 </section>
 
-<!-- Registration CTA -->
+<!-- Registration CTA: full-width gradient band with register button. -->
 <section class="cta-band" aria-labelledby="register-heading">
   <div class="container">
     <h2 id="register-heading">Save Your Spot Today!</h2>
     <p>Spots fill up fast — register your child today. $5 per child.</p>
-    <a href="/vbs-registration/"
-       class="btn btn-primary"
-       onclick="if(typeof gtag==='function'){gtag('event','register_click',{event_category:'VBS Registration',event_label:'VBS Page CTA'});}">
-      Register Now →
-    </a>
+    <a href="/vbs-registration/" class="btn btn-primary">Register Now →</a>
     <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.75;">
       Questions? Contact Jonathan Choi at
       <a href="mailto:jonathan.choi@christcentralbuffalo.com" style="color: #fdd31b;">jonathan.choi@christcentralbuffalo.com</a>
@@ -197,3 +210,51 @@ permalink: /vbs/
     </p>
   </div>
 </section>
+
+<!-- JSON-LD Event structured data: tells Google this is a local event.
+     Google uses this to show a rich result (event card with dates, location, and cost)
+     directly in search results — significant visibility boost for a local event.
+     See: https://schema.org/Event and https://developers.google.com/search/docs/appearance/structured-data/event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "3-Day Surprise Party VBS",
+  "description": "A 3-day Vacation Bible School for children ages 4–12 at Christ Central Buffalo. Games, crafts, music, snacks, and Bible stories. $5 per child.",
+  "startDate": "2026-08-21T09:00:00-04:00",
+  "endDate": "2026-08-23T13:00:00-04:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Christ Central Buffalo",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1407 N Forest Rd",
+      "addressLocality": "Williamsville",
+      "addressRegion": "NY",
+      "postalCode": "14221",
+      "addressCountry": "US"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Christ Central Buffalo",
+    "url": "https://christcentralbuffalo.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "name": "VBS Registration",
+    "price": "5",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "url": "https://vbs.christcentralbuffalo.com/vbs-registration/",
+    "validFrom": "2026-01-01"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Children ages 4–12"
+  },
+  "url": "https://vbs.christcentralbuffalo.com/vbs/"
+}
+</script>

@@ -1,10 +1,34 @@
+<!--
+  footer.html — Site-wide footer include
+  ════════════════════════════════════════════════════════════════════
+
+  This file is a Jekyll "include" — it is injected into every page
+  via {% include footer.html %} in _layouts/default.html.
+
+  Includes are reusable HTML fragments stored in the _includes/ folder.
+  Any change here automatically updates the footer on every page of the site.
+
+  Structure:
+    .site-footer          — Outer wrapper (dark background, set in vbs.scss)
+      .footer-inner       — CSS Grid: 4 columns on desktop, 1 column on mobile
+        .footer-brand     — Logo + church name (column 1)
+        .footer-links     — Navigation links (column 2)
+        .footer-contact   — Email, phone, address (column 3)
+        .footer-copy      — Copyright line (spans all 4 columns, bottom row)
+-->
 <footer class="site-footer">
   <div class="footer-inner">
+
+    <!-- Brand: Church logo image + name
+         onerror="this.style.display='none'" hides the <img> gracefully
+         if the logo file is missing rather than showing a broken image icon. -->
     <div class="footer-brand">
       <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Christ Central Buffalo logo" width="40" height="40" onerror="this.style.display='none'">
       <span>Christ Central Buffalo</span>
     </div>
 
+    <!-- Footer navigation: secondary nav links
+         aria-label distinguishes this from the main header nav for screen readers. -->
     <div class="footer-links">
       <nav aria-label="Footer navigation">
         <a href="/">Home</a>
@@ -14,6 +38,9 @@
       </nav>
     </div>
 
+    <!-- Contact info: email, phone, physical address
+         <address> is a semantic HTML element for contact information.
+         "font-style: normal" overrides the browser's default italic style for <address>. -->
     <div class="footer-contact">
       <a href="mailto:jonathan.choi@christcentralbuffalo.com">jonathan.choi@christcentralbuffalo.com</a>
       <a href="tel:7162180777">716-218-0777</a>
@@ -22,8 +49,12 @@
       </address>
     </div>
 
+    <!-- Copyright line
+         {{ 'now' | date: "%Y" }} is a Liquid filter that outputs the current 4-digit year.
+         "grid-column: 1 / -1" in vbs.scss spans this element across all grid columns. -->
     <div class="footer-copy">
       <p>&copy; {{ 'now' | date: "%Y" }} Christ Central Buffalo. All rights reserved.</p>
     </div>
+
   </div>
 </footer>

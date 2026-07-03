@@ -1,54 +1,93 @@
+# _config.yml — Jekyll site configuration
+#
+# This file controls global site settings. Jekyll reads it once at build time.
+# IMPORTANT: If you change this file while running `jekyll serve` locally,
+# you must restart the server (Ctrl+C, then run `bundle exec jekyll serve` again)
+# for changes to take effect. Other file changes hot-reload automatically.
+
+# ── Site Identity ──────────────────────────────────────────────────────────────
+# These values are available in templates as {{ site.title }}, {{ site.description }}, etc.
 title: "3-Day Surprise Party VBS — Christ Central Buffalo"
 description: "Join us for our 3-Day Surprise Party VBS August 21–23 at Christ Central Buffalo! Games, crafts, music, snacks, and Bible stories for kids ages 4–12. $5 per child. Lunch and snacks provided."
+
+# The full URL of the live site (no trailing slash). Used by jekyll-seo-tag and jekyll-sitemap.
 url: "https://vbs.christcentralbuffalo.com"
+
+# Subpath if the site is hosted in a subfolder (e.g., "/blog"). Empty string = root.
 baseurl: ""
 
-# Author / contact
+# ── Author / Contact ───────────────────────────────────────────────────────────
+# Used by jekyll-seo-tag for structured data / meta tags.
 author:
   name: "Christ Central Buffalo"
   email: "jonathan.choi@christcentralbuffalo.com"
 
-# Theme
+# ── Theme ──────────────────────────────────────────────────────────────────────
+# The Minima gem provides base layouts and styles.
+# This site overrides Minima's default.html layout entirely with _layouts/default.html,
+# and replaces all styles with _sass/vbs.scss.
 theme: minima
 
-# Plugins
+# ── Plugins ───────────────────────────────────────────────────────────────────
+# Jekyll plugins listed here are loaded automatically at build time.
+# They must also be listed in the Gemfile under :jekyll_plugins.
 plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
+  - jekyll-seo-tag    # Auto-generates <meta> SEO, Open Graph, and Twitter Card tags
+  - jekyll-sitemap    # Auto-generates /sitemap.xml for search engine crawlers
 
-# Permalink format
+# ── Permalink Format ───────────────────────────────────────────────────────────
+# Controls the URL structure of generated pages.
+# "/:title/" means the URL uses the page's title slug (e.g., /vbs/).
+# Pages with an explicit "permalink:" in their front matter override this.
 permalink: /:title/
 
-# SEO / Social
+# ── SEO / Social ──────────────────────────────────────────────────────────────
+# These values are used by jekyll-seo-tag to generate social sharing meta tags.
 twitter:
-  card: summary_large_image
-logo: /assets/images/logo.png
+  card: summary_large_image   # Controls how the page looks when shared on Twitter/X
+logo: /assets/images/logo.png # Used in structured data (Google rich results)
+
+# og:image — the image used when this site is shared on Facebook, iMessage, Slack, etc.
+# Ideal size: 1200×630px. Create a poster-style image with the VBS name and dates.
+# Place the file at /assets/images/vbs-social-share.jpg and this config activates it.
+# If the file doesn't exist yet, jekyll-seo-tag will fall back to the logo above.
+image: /assets/images/vbs-social-share.jpg
 
 social:
   name: "Christ Central Buffalo"
 
-# Navigation
+# ── Navigation ────────────────────────────────────────────────────────────────
+# Lists the pages that appear in the site's main navigation header.
+# Paths are relative to the site root. Order here = order in the nav.
+# Note: vbs-registration and pay are intentionally excluded from the main nav.
 header_pages:
   - index.md
   - vbs/index.md
   - about/index.md
   - contact/index.md
 
-# Minima settings (overridden by custom layout but kept for reference)
+# ── Theme Settings ────────────────────────────────────────────────────────────
+# Minima skin setting — kept for reference but has no visual effect
+# because this site uses a fully custom layout and Sass override.
 minima:
   skin: auto
 
-# Exclude from build
+# ── Exclude from Build ────────────────────────────────────────────────────────
+# Files and folders listed here are NOT copied into the _site/ output directory.
+# This keeps dev/config files out of the published website.
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - vendor/
-  - .bundle/
-  - _site/
-  - .jekyll-cache/
-  - "VBS Branding/"
-  - "*.zip"
-  - "*.eps"
-  - "*.pdf"
-  - README.md
-  - .clinerules/
+  - Gemfile             # Ruby dependency manifest — not a web file
+  - Gemfile.lock        # Auto-generated lockfile — not a web file
+  - vendor/             # Bundler installs gems here locally; not part of the site
+  - .bundle/            # Bundler configuration directory
+  - _site/              # Jekyll's build output — never commit or publish this directly
+  - .jekyll-cache/      # Jekyll's internal cache for faster rebuilds
+  - "VBS Branding/"     # Design source files (Illustrator, etc.) — not for the web
+  - "*.zip"             # Archive files
+  - "*.eps"             # Vector source files
+  - "*.pdf"             # PDF files
+  - README.md           # Developer documentation — not a web page
+  - AGENTS.md           # AI agent configuration — not a web page
+  - CLAUDE.md           # Claude/Cline configuration — not a web page
+  - .clinerules/        # Cline AI rules directory — not a web page
+  - CHANGELOG.md        # Change log for developers — not a web page

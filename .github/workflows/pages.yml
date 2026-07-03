@@ -1,51 +1,95 @@
+# pages.yml — GitHub Actions workflow for building and deploying the Jekyll site.
+#
+# What is GitHub Actions?
+# GitHub Actions is an automation system built into GitHub. When you push code,
+# GitHub runs the steps defined in this file automatically on a remote server.
+# This file lives in .github/workflows/ — that's how GitHub knows to run it.
+#
+# How this workflow works:
+# 1. A push to the "main" branch triggers this workflow
+# 2. The "build" job checks out the code, installs Ruby + Jekyll, and builds the site
+# 3. The "deploy" job takes the built site and publishes it to GitHub Pages
+# 4. The live site updates within ~1–2 minutes of your push
+
 name: Deploy VBS Site to GitHub Pages
 
+# ── Triggers ──────────────────────────────────────────────────────────────────
+# This workflow runs automatically on:
 on:
   push:
-    branches: ["main"]
-  workflow_dispatch:
+    branches: ["main"]    # Any push to the main branch (e.g., merging a PR)
+  workflow_dispatch:      # Also allows manual triggering from the GitHub Actions UI
 
+# ── Permissions ───────────────────────────────────────────────────────────────
+# GitHub Actions needs these specific permissions to deploy to GitHub Pages.
+# "contents: read" — allowed to read the repo files
+# "pages: write" — allowed to publish to GitHub Pages
+# "id-token: write" — required for OIDC-based authentication with GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# ── Concurrency ───────────────────────────────────────────────────────────────
+# Prevents two deployments from running at the same time (which would cause conflicts).
+# "cancel-in-progress: false" means if a new push comes in while deploying,
+# the current deployment finishes before the next one starts.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
+# ── Jobs ──────────────────────────────────────────────────────────────────────
+# A workflow is made up of "jobs". Each job runs on its own virtual machine.
+# Jobs can run in parallel or sequentially (use "needs:" to create dependencies).
 jobs:
+
+  # Job 1: Build — compiles the Jekyll site into static HTML/CSS/JS files
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest   # Run on a fresh Ubuntu Linux virtual machine
     steps:
+
+      # Step 1: Download the repo code onto the virtual machine
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Step 2: Install Ruby and Bundler, then run `bundle install`
+      # "bundler-cache: true" caches installed gems between runs for faster builds
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
           bundler-cache: true
 
+      # Step 3: Configure GitHub Pages settings (e.g., detects the base URL)
+      # The "id: pages" label lets later steps reference this step's outputs
       - name: Setup GitHub Pages
         id: pages
         uses: actions/configure-pages@v6
 
+      # Step 4: Run the Jekyll build command
+      # "--baseurl" is set dynamically from the Pages setup step above
+      # "JEKYLL_ENV: production" enables production-only features (e.g., analytics)
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
 
+      # Step 5: Package the built _site/ folder as a GitHub Pages artifact
+      # (An "artifact" is a file bundle passed between jobs)
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
 
+  # Job 2: Deploy — publishes the built site to GitHub Pages
+  # "needs: build" means this job waits for the build job to finish first
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}   # The live URL after deployment
     runs-on: ubuntu-latest
-    needs: build
+    needs: build    # Don't run until the build job succeeds
     steps:
+
+      # Step 1: Take the artifact from the build job and publish it to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

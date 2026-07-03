@@ -1,13 +1,19 @@
 ---
+# Front matter — Jekyll reads this YAML block to configure the page.
+# layout: which template wraps this page (_layouts/default.html)
+# title: shown in the browser tab and used by the SEO plugin
+# description: meta description for Google search results
+# permalink: the exact URL path for this page (/contact/)
 layout: default
 title: Contact
 description: "Get in touch with Christ Central Buffalo about the 3-Day Surprise Party VBS. Contact Jonathan Choi at 716-218-0777 or jonathan.choi@christcentralbuffalo.com."
 permalink: /contact/
 ---
 
+<!-- Skip link: hidden until focused; lets keyboard users jump past the header/nav -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Page Header -->
+<!-- Page Header: gradient banner (styles in .page-header in vbs.scss) -->
 <header class="page-header">
   <div class="container">
     <h1>Contact Us</h1>
@@ -15,9 +21,11 @@ permalink: /contact/
   </div>
 </header>
 
+<!-- Decorative rainbow stripe -->
 <div class="color-stripe" aria-hidden="true"></div>
 
-<!-- Contact Section -->
+<!-- Contact Section: contact card + FAQ in a single-column layout.
+     On larger screens, a CSS grid could be added here to show them side by side. -->
 <section class="section" aria-labelledby="contact-heading">
   <div class="container">
     <div style="max-width: 840px; margin: 0 auto;">
@@ -25,10 +33,12 @@ permalink: /contact/
 
       <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
 
-        <!-- VBS Contact -->
+        <!-- VBS Contact Card: .contact-card styles are in vbs.scss.
+             Each .contact-row displays an icon + info side by side using flexbox. -->
         <div class="contact-card">
           <h3>🎉 VBS Event Contact</h3>
 
+          <!-- Contact row: emoji icon + name/role -->
           <div class="contact-row">
             <span aria-hidden="true">👤</span>
             <div>
@@ -37,6 +47,7 @@ permalink: /contact/
             </div>
           </div>
 
+          <!-- Email link: mailto: opens the user's default email client -->
           <div class="contact-row">
             <span aria-hidden="true">📧</span>
             <div>
@@ -46,6 +57,7 @@ permalink: /contact/
             </div>
           </div>
 
+          <!-- Phone link: tel: lets mobile users tap to call directly -->
           <div class="contact-row">
             <span aria-hidden="true">📞</span>
             <div>
@@ -53,6 +65,7 @@ permalink: /contact/
             </div>
           </div>
 
+          <!-- Physical address: <address> is a semantic HTML element for contact info -->
           <div class="contact-row">
             <span aria-hidden="true">📍</span>
             <div>
@@ -63,6 +76,8 @@ permalink: /contact/
             </div>
           </div>
 
+          <!-- External church website link
+               rel="noopener noreferrer" is a security best practice for target="_blank" links -->
           <div class="contact-row">
             <span aria-hidden="true">🌐</span>
             <div>
@@ -73,7 +88,9 @@ permalink: /contact/
           </div>
         </div>
 
-        <!-- FAQ -->
+        <!-- FAQ Section: uses native HTML <details>/<summary> elements for accordion behavior.
+             No JavaScript needed — browsers handle open/close natively.
+             Each <details> is a question; clicking <summary> reveals the answer. -->
         <div>
           <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
 
@@ -137,12 +154,13 @@ permalink: /contact/
             </p>
           </details>
         </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA Band: full-width gradient banner prompting visitors to register -->
 <section class="cta-band" aria-labelledby="contact-cta-heading">
   <div class="container">
     <h2 id="contact-cta-heading">Ready to Register?</h2>

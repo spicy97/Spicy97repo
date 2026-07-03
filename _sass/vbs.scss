@@ -18,19 +18,20 @@ $gray:       #555566;
 $light-gray: #f0f0f4;
 
 // ── Typography ──────────────────────────────────────────────
-// CHALOPS display font (place actual font files in /assets/fonts/)
-// Fallback to a bold system sans-serif until font files are added
+// Lilita One — self-hosted in /assets/fonts/ (no Google Fonts external request).
+// font-display: swap means the browser shows a fallback font immediately while
+// Lilita One loads, then swaps in — prevents invisible text during font load (FOIT).
+// CHANGE 2026-07-03: removed dead CHALOPS @font-face (font files never existed).
+//                    Removed Google Fonts <link> from default.html; self-host instead.
 @font-face {
-  font-family: 'CHALOPS';
-  src: url('/assets/fonts/CHALOPS.woff2') format('woff2'),
-       url('/assets/fonts/CHALOPS.woff') format('woff');
-  font-weight: 700;
+  font-family: 'Lilita One';
+  src: url('/assets/fonts/LilitaOne-Regular.woff2') format('woff2'),
+       url('/assets/fonts/LilitaOne-Regular.woff') format('woff');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-// Lilita One — loaded via Google Fonts in default.html
-// Bold, rounded, fun display font — great for kids' event headings
 $font-heading: 'Lilita One', 'Comic Neue', 'Comic Sans MS', cursive;
 $font-body:    system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
@@ -995,6 +996,9 @@ main { flex: 1; }
 // ════════════════════════════════════════════════════════════
 
 // ── Confetti animations ───────────────────────────────────────
+// Three drift paths + a side-to-side sway. Confetti pieces combine
+// these via animation-name (e.g., "confetti-drift-1, confetti-sway").
+// The @for loop in .confetti-piece staggers each piece's delay/duration.
 @keyframes confetti-drift-1 {
   0%   { transform: translateY(0vh)   rotate(0deg); }
   100% { transform: translateY(110vh) rotate(720deg); }
@@ -1014,7 +1018,9 @@ main { flex: 1; }
   75%       { margin-left: -30px; }
 }
 
-// Letter bounce-in for hero titles
+// Letter bounce-in: applied to each letter span in "SURPRISE" and "PARTY!".
+// cubic-bezier(0.34, 1.56, 0.64, 1) is a spring easing — it overshoots
+// slightly (scale > 1 at 70%) then settles back for a natural bouncy feel.
 @keyframes letter-drop-in {
   0%   { opacity: 0; transform: translateY(-60px) scale(0.5); }
   70%  { transform: translateY(8px) scale(1.10); }
@@ -1077,6 +1083,9 @@ body {
 }
 
 // ── Party Hero ───────────────────────────────────────────────
+// Full-width hero on the home page with layered CSS background-image
+// gradients creating polka-dots + diagonal confetti streaks — no images.
+// background-size and background-position offset each layer independently.
 .party-hero {
   background-color: #fff;
   background-image:
@@ -2081,4 +2090,60 @@ body {
   a { color: darken($red, 10%); font-weight: 700; }
 
   &[hidden] { display: none; }
+}
+
+// ════════════════════════════════════════════════════════════
+// ACCESSIBILITY — REDUCED MOTION
+// CHANGE 2026-07-03: Added to comply with WCAG 2.1 criterion 2.3.3.
+//
+// Users who have enabled "Reduce Motion" in their OS settings
+// (macOS: Accessibility → Display, iOS: Accessibility → Motion,
+//  Windows: Ease of Access → Display → Show animations)
+// will see NO animations on this site. This prevents nausea and
+// discomfort for users with vestibular disorders.
+//
+// The @media (prefers-reduced-motion: reduce) block overrides ALL
+// animation and transition declarations when the user prefers less motion.
+// ════════════════════════════════════════════════════════════
+@media (prefers-reduced-motion: reduce) {
+  // Stop all confetti pieces
+  .confetti-piece {
+    animation: none !important;
+    opacity: 0 !important;  // hide them entirely — static confetti is confusing
+  }
+
+  // Stop all letter bounce-in animations
+  .vbs-wordmark,
+  .vbs-wordmark span,
+  .surprise-title .sp,
+  .party-title .pt {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  // Stop child block entrance animations
+  .reg-child-block {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  // Stop the register button pulse glow
+  .btn-party {
+    animation: none !important;
+  }
+
+  // Stop popup entrance animation
+  .popup-card {
+    animation: none !important;
+  }
+
+  // Disable hover lift effects site-wide (can cause jarring jumps)
+  .btn:hover,
+  .card:hover,
+  .btn-party:hover,
+  .btn-party-outline:hover {
+    transform: none !important;
+  }
 }

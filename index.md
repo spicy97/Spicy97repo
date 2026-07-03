@@ -1,4 +1,9 @@
 ---
+# Front matter — Jekyll reads this YAML block to configure the page.
+# layout: which template to wrap this page in (from _layouts/default.html)
+# title: shown in the browser tab and used by the SEO plugin
+# description: the meta description shown in Google search results
+# permalink: the URL path for this page (/ = home page)
 layout: default
 title: Home
 description: "Join us for our 3-Day Surprise Party VBS August 21–23 at Christ Central Buffalo! Games, crafts, music, snacks, and Bible stories for kids ages 4–12. $5 per child."
@@ -7,12 +12,19 @@ permalink: /
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- ═══ PARTY HERO ═══ -->
+<!-- ═══ PARTY HERO ═══
+     Full-width hero section with the poster-style "VBS SURPRISE PARTY!" title.
+     Uses animated CSS to bounce each letter in with a staggered delay.
+     Styles are in the "POSTER-STYLE HOME PAGE REDESIGN" section of vbs.scss. -->
 <section class="party-hero" aria-labelledby="hero-title">
 
-  <!-- Floating balloon images -->
-  <img src="{{ '/assets/images/balloon-blue.png' | relative_url }}"   class="balloon balloon--left"  alt="" aria-hidden="true">
-  <img src="{{ '/assets/images/balloon-yellow.png' | relative_url }}" class="balloon balloon--right" alt="" aria-hidden="true">
+  <!-- Floating balloon images — decorative only, hidden from screen readers.
+       width/height prevent layout shift (CLS) while images load.
+       loading="lazy" defers loading since balloons are decorative/non-critical.
+       fetchpriority="high" is intentionally NOT set here — these are decorative
+       and not the LCP element; the hero text is rendered via CSS, not an image. -->
+  <img src="{{ '/assets/images/balloon-blue.png' | relative_url }}"   class="balloon balloon--left"  alt="" aria-hidden="true" width="200" height="280" loading="lazy">
+  <img src="{{ '/assets/images/balloon-yellow.png' | relative_url }}" class="balloon balloon--right" alt="" aria-hidden="true" width="200" height="280" loading="lazy">
 
   <div class="party-hero__inner">
 
@@ -23,12 +35,14 @@ permalink: /
       <span class="invite-star" aria-hidden="true">★</span>
     </div>
 
-    <!-- VBS wordmark -->
+    <!-- VBS wordmark: giant animated "VBS" letters (V=blue, B=red, S=green) -->
     <div class="vbs-wordmark" aria-hidden="true">
       <span class="vbs-v">V</span><span class="vbs-b">B</span><span class="vbs-s">S</span>
     </div>
 
-    <!-- SURPRISE PARTY title -->
+    <!-- SURPRISE PARTY title: each letter is its own <span> for individual color + animation.
+         id="hero-title" is referenced by aria-labelledby on the <section> above,
+         which tells screen readers the section's accessible name. -->
     <h1 id="hero-title" class="surprise-title">
       <span class="sp sp1">S</span><span class="sp sp2">U</span><span class="sp sp3">R</span><span class="sp sp4">P</span><span class="sp sp5">R</span><span class="sp sp6">I</span><span class="sp sp1">S</span><span class="sp sp3">E</span>
     </h1>
@@ -36,22 +50,22 @@ permalink: /
       <span class="pt pt1">P</span><span class="pt pt2">A</span><span class="pt pt3">R</span><span class="pt pt4">T</span><span class="pt pt5">Y</span><span class="pt pt6">!</span>
     </div>
 
-    <!-- Register CTA -->
+    <!-- Register CTA buttons -->
     <div class="hero-cta-wrap">
-      <a href="/vbs-registration/"
-         class="btn btn-party"
-         onclick="if(typeof gtag==='function'){gtag('event','register_click',{event_category:'VBS Registration',event_label:'Hero CTA'});}">
-        🎉 Save Your Spot Today!
-      </a>
+      <a href="/vbs-registration/" class="btn btn-party">🎉 Save Your Spot Today!</a>
       <a href="/vbs/" class="btn btn-party-outline">Learn More</a>
     </div>
 
   </div>
 </section>
 
+<!-- Decorative rainbow color stripe between sections — aria-hidden so screen readers skip it -->
 <div class="color-stripe" aria-hidden="true"></div>
 
-<!-- ═══ INFO GRID (poster-style: Dates / Time / Place / Who) ═══ -->
+<!-- ═══ INFO GRID (poster-style: Dates / Time / Place / Who) ═══
+     Four info cards displayed in a 2×2 grid on mobile, 4-column row on desktop.
+     Each card uses a color modifier (info-card--blue, --red, etc.) for the border color.
+     sr-only hides the heading visually but keeps it accessible to screen readers. -->
 <section class="info-section" aria-labelledby="info-heading">
   <div class="container">
     <h2 id="info-heading" class="sr-only">Event Information</h2>
@@ -90,12 +104,13 @@ permalink: /
   </div>
 </section>
 
-<!-- ═══ JOIN US FOR + BIBLE TRUTH ═══ -->
+<!-- ═══ JOIN US FOR + BIBLE TRUTH ═══
+     Two-column layout on desktop: activity list on the left, Bible verse card on the right. -->
 <section class="join-section" aria-labelledby="join-heading">
   <div class="container">
     <div class="join-layout">
 
-      <!-- Left: Join us for -->
+      <!-- Left: Activity list -->
       <div class="join-block">
         <h2 id="join-heading" class="join-title">JOIN US FOR:</h2>
         <ul class="join-list" role="list">
@@ -113,7 +128,7 @@ permalink: /
         </a>
       </div>
 
-      <!-- Right: Bible Truth card -->
+      <!-- Right: Bible Truth card — styled like a gift tag from the poster -->
       <aside class="bible-truth-card" aria-label="Bible Truth">
         <div class="bible-truth-card__label">BIBLE TRUTH:</div>
         <blockquote class="bible-truth-card__quote">
@@ -126,7 +141,8 @@ permalink: /
   </div>
 </section>
 
-<!-- ═══ BOTTOM CTA BAND ═══ -->
+<!-- ═══ BOTTOM CTA BAND ═══
+     Full-width dark navy banner with the final call-to-action to register. -->
 <section class="party-cta-band" aria-labelledby="cta-heading">
   <div class="container">
     <p class="party-cta-band__line1">COME READY FOR FUN.</p>
@@ -141,6 +157,8 @@ permalink: /
       &nbsp;·&nbsp;
       <a href="tel:7162180777">716-218-0777</a>
       &nbsp;·&nbsp;
+      <!-- rel="noopener noreferrer" is a security best practice for external links that open in a new tab.
+           Without it, the opened page could access this page via window.opener. -->
       <a href="https://christcentralbuffalo.com" target="_blank" rel="noopener noreferrer">christcentralbuffalo.com</a>
     </div>
     <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.65;">

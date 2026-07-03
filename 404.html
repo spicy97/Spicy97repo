@@ -1,14 +1,31 @@
 ---
+# Front matter — Jekyll reads this YAML block to configure the page.
+# layout: which template wraps this page (_layouts/default.html)
+# title: shown in the browser tab for 404 errors
+# description: meta description (search engines typically won't index 404 pages, but good practice)
+# permalink: /404.html is the standard path GitHub Pages looks for to serve custom 404 pages.
+#             Do NOT change this — GitHub Pages requires exactly this filename/path.
 layout: default
 title: Page Not Found
 description: "The page you're looking for doesn't exist. Return to the Christ Central Buffalo VBS website."
 permalink: /404.html
 ---
 
+<!-- 404 Error Page
+     This page is shown automatically by GitHub Pages whenever a visitor
+     navigates to a URL that doesn't exist on the site.
+
+     .error-page centers the content vertically and horizontally (flexbox in vbs.scss).
+     The balloon emoji and fun copy keep the tone light — matching the party theme. -->
 <div class="error-page">
+  <!-- Decorative emoji — aria-hidden hides it from screen readers (it's purely visual) -->
   <div class="error-emoji" aria-hidden="true">🎈</div>
+
   <h1>404 — Oops!</h1>
   <p>Looks like this page wandered off to the party without us. The page you're looking for doesn't exist.</p>
+
+  <!-- Two navigation buttons: go home or see VBS details.
+       flex-wrap allows the buttons to stack on narrow screens. -->
   <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
     <a href="/" class="btn btn-primary">Go Back Home</a>
     <a href="/vbs/" class="btn btn-secondary">VBS Details</a>

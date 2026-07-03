@@ -1,13 +1,22 @@
 ---
+# Front matter — Jekyll reads this YAML block to configure the page.
+# layout: which template wraps this page (_layouts/default.html)
+# title: shown in the browser tab and used by the SEO plugin
+# description: meta description for Google search results
+# permalink: the exact URL path for this page (/vbs-registration/)
+# Note: this page is intentionally NOT listed in header_pages in _config.yml.
+#       It's linked from the "Register Now" CTA buttons throughout the site,
+#       but is not shown in the main navigation bar.
 layout: default
 title: VBS Registration
 description: "Register your child for the 3-Day Surprise Party VBS at Christ Central Buffalo — August 21–23, 2026."
 permalink: /vbs-registration/
 ---
 
+<!-- Skip link: hidden until focused; lets keyboard users jump past the header/nav -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Page Header -->
+<!-- Page Header: gradient banner at the top of the page -->
 <header class="page-header">
   <div class="container">
     <span class="hero-eyebrow" style="margin-bottom:1rem; display:inline-block;">🎉 VBS 2026</span>
@@ -18,7 +27,10 @@ permalink: /vbs-registration/
 
 <div class="color-stripe" aria-hidden="true"></div>
 
-<!-- Registration Form Section -->
+<!-- Registration Form Section
+     All form logic is handled by the <script> block at the bottom of this page.
+     No server is required — form data is sent via fetch() to a Google Apps Script URL
+     which writes submissions to a Google Sheet. -->
 <section class="section" aria-labelledby="register-heading">
   <div class="container">
     <div class="reg-form-wrap">
@@ -30,7 +42,9 @@ permalink: /vbs-registration/
         </p>
       </div>
 
-      <!-- Success message (hidden until submit) -->
+      <!-- Success message: hidden by default (HTML "hidden" attribute).
+           Shown after a successful form submission by setting hidden = false in JavaScript.
+           aria-live="polite" tells screen readers to announce this when it appears. -->
       <div id="reg-success" class="reg-success" hidden aria-live="polite">
         <div class="reg-success-inner">
           <div class="reg-success-emoji">🎉</div>
@@ -57,13 +71,17 @@ permalink: /vbs-registration/
         </div>
       </div>
 
-      <!-- Error message (hidden until needed) -->
+      <!-- Error message: hidden by default; shown if the fetch() call fails (network error).
+           aria-live="polite" announces it to screen readers when it becomes visible. -->
       <div id="reg-error" class="reg-error" hidden aria-live="polite">
         <p>⚠️ Something went wrong. Please try again or email us at <a href="mailto:jonathan.choi@christcentralbuffalo.com">jonathan.choi@christcentralbuffalo.com</a>.</p>
       </div>
 
       <form id="vbs-reg-form" class="reg-form" novalidate>
 
+        <!-- Children container: child blocks are injected here dynamically by JavaScript.
+             The first child block is added automatically on page load via addChild().
+             Additional blocks are added when the user clicks "Add Another Child". -->
         <!-- ── Children (first) ───────────────────────────── -->
         <div id="children-container">
           <!-- Child blocks are injected here by JS -->
@@ -141,6 +159,27 @@ permalink: /vbs-registration/
           </div>
         </div>
 
+        <!-- Honeypot anti-spam field: visually and functionally hidden from real users.
+             Bots fill every field they find; humans never see or fill this.
+             The JavaScript checks this field on submit and silently rejects bot submissions.
+             CSS hides it; aria-hidden removes it from the accessibility tree entirely. -->
+        <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+          <label for="reg-website">Website (leave blank)</label>
+          <input type="text" id="reg-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- Live submission summary: updates dynamically as the form is filled.
+             Shows "Registering X child(ren) for [Parent Name]" before the submit button.
+             aria-live="polite" announces changes to screen readers without interrupting. -->
+        <div id="reg-summary" class="reg-summary" aria-live="polite" style="
+          text-align:center;
+          margin-bottom:1rem;
+          min-height:1.5em;
+          font-size:0.95rem;
+          color:#555566;
+          font-style:italic;
+        "></div>
+
         <!-- Submit -->
         <div class="reg-submit-wrap">
           <button type="submit" id="reg-submit-btn" class="btn btn-primary reg-submit-btn">
@@ -155,10 +194,30 @@ permalink: /vbs-registration/
   </div>
 </section>
 
-<!-- Script -->
+<!-- Registration Form Script
+     ════════════════════════════════════════════════════════════════
+
+     Architecture overview:
+     - This is a vanilla JavaScript (no frameworks) single-page form.
+     - It uses an IIFE (Immediately Invoked Function Expression): (function(){ ... })()
+       This wraps all the code in a private scope so variables don't leak to the global window.
+     - On submit, form data is collected and sent via fetch() to a Google Apps Script web app.
+     - The Google Apps Script (hosted on Google's servers) receives the POST and writes
+       a new row to a Google Sheet. No backend server is needed for this site.
+     - Because the Google Apps Script endpoint uses "no-cors" mode, the browser does not
+       read the response body. Success is assumed if the fetch() resolves without an error.
+
+     To update the Google Apps Script endpoint:
+     1. Open the Google Apps Script project
+     2. Deploy a new version as a Web App
+     3. Copy the new /exec URL and paste it into SCRIPT_URL below
+-->
 <script>
 (function () {
   // ── CONFIG ────────────────────────────────────────────────────────
+  // SCRIPT_URL: the Google Apps Script endpoint that receives form submissions.
+  // This URL is tied to a specific deployed version of the script.
+  // If you redeploy the script, update this URL.
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwoMsgV38eZ-MbpZUwaYaRJUKglQ1JW4f2Bkz5UscU4P9lvP06Hh9PL88Q25XZ7ZK68/exec';
   // ─────────────────────────────────────────────────────────────────
 
@@ -169,6 +228,8 @@ permalink: /vbs-registration/
   var submitBtn    = document.getElementById('reg-submit-btn');
   var successBox   = document.getElementById('reg-success');
   var errorBox     = document.getElementById('reg-error');
+  var summaryEl    = document.getElementById('reg-summary');
+  var honeypotEl   = document.getElementById('reg-website');
   var ecSameChk    = document.getElementById('ec-same');
   var ecDiffFields = document.getElementById('ec-different-fields');
   var ecNameEl     = document.getElementById('ec-name');
@@ -321,15 +382,51 @@ permalink: /vbs-registration/
     }
   }
 
+  // ── Live summary ──────────────────────────────────────────────────
+  // Updates the "Registering X child(ren) for [Name]" line in real time.
+  // Called whenever a parent name or child block changes.
+  function updateSummary() {
+    var parentNameVal = (document.getElementById('parent-name') || {}).value || '';
+    var childBlocks   = container.querySelectorAll('.reg-child-block');
+    var count         = childBlocks.length;
+    if (!summaryEl) return;
+    if (count === 0 && !parentNameVal.trim()) {
+      summaryEl.textContent = '';
+      return;
+    }
+    var who  = parentNameVal.trim() ? ' for ' + parentNameVal.trim() : '';
+    var word = count === 1 ? 'child' : 'children';
+    summaryEl.textContent = 'Registering ' + count + ' ' + word + who;
+  }
+
+  // Wire the live summary to the parent name field
+  var parentNameInput = document.getElementById('parent-name');
+  if (parentNameInput) {
+    parentNameInput.addEventListener('input', updateSummary);
+  }
+
   // Add first child on load
   addChild();
+  updateSummary();
 
-  addBtn.addEventListener('click', addChild);
+  addBtn.addEventListener('click', function() {
+    addChild();
+    updateSummary();
+  });
 
   // ── Form Submission ────────────────────────────────────────────────
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     errorBox.hidden = true;
+
+    // Honeypot check: if this hidden field is filled, it's a bot — silently reject.
+    // Real users never see or interact with this field (it's positioned off-screen).
+    if (honeypotEl && honeypotEl.value) {
+      // Fake success to avoid alerting the bot
+      form.hidden       = true;
+      successBox.hidden = false;
+      return;
+    }
 
     if (!form.checkValidity()) {
       form.reportValidity();
@@ -388,25 +485,34 @@ permalink: /vbs-registration/
     submitBtn.disabled    = true;
     submitBtn.textContent = 'Submitting…';
 
-    fetch(SCRIPT_URL, {
+    // fetch() with a 15-second timeout using Promise.race().
+    // Without a timeout, if the Google Apps Script is unresponsive the button
+    // stays permanently disabled with "Submitting…" and the user has no way to retry.
+    var fetchRequest = fetch(SCRIPT_URL, {
       method:  'POST',
       mode:    'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify(payload)
-    })
+    });
+
+    var timeoutPromise = new Promise(function (_, reject) {
+      setTimeout(function () {
+        reject(new Error('Request timed out after 15 seconds'));
+      }, 15000);
+    });
+
+    Promise.race([fetchRequest, timeoutPromise])
     .then(function () {
       form.hidden       = true;
       successBox.hidden = false;
       successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (typeof gtag === 'function') {
-        gtag('event', 'vbs_registration_submitted', {
-          event_category: 'VBS Registration',
-          event_label:    'Form Submit',
-          value:          children.length
-        });
-      }
     })
-    .catch(function () {
+    .catch(function (err) {
+      // Show a friendlier message if it was a timeout vs a network error
+      var errMsg = err && err.message && err.message.indexOf('timed out') !== -1
+        ? '⏱️ The request timed out. Please check your internet connection and try again, or email us at <a href="mailto:jonathan.choi@christcentralbuffalo.com">jonathan.choi@christcentralbuffalo.com</a>.'
+        : '⚠️ Something went wrong. Please try again or email us at <a href="mailto:jonathan.choi@christcentralbuffalo.com">jonathan.choi@christcentralbuffalo.com</a>.';
+      errorBox.querySelector('p').innerHTML = errMsg;
       errorBox.hidden       = false;
       submitBtn.disabled    = false;
       submitBtn.textContent = 'Submit Registration →';

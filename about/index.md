@@ -1,13 +1,19 @@
 ---
+# Front matter — Jekyll reads this YAML block to configure the page.
+# layout: which template wraps this page (_layouts/default.html)
+# title: shown in the browser tab and used by the SEO plugin
+# description: meta description for Google search results (~155 chars ideal)
+# permalink: the exact URL path for this page (/about/)
 layout: default
 title: About Our Church
 description: "Learn about Christ Central Buffalo — a welcoming, family-friendly church community in Buffalo, NY. We'd love to meet your family at VBS 2026!"
 permalink: /about/
 ---
 
+<!-- Skip link: hidden until focused; lets keyboard users jump past the header/nav -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Page Header -->
+<!-- Page Header: gradient banner (styles in .page-header in vbs.scss) -->
 <header class="page-header">
   <div class="container">
     <h1>About Christ Central Buffalo</h1>
@@ -15,12 +21,16 @@ permalink: /about/
   </div>
 </header>
 
+<!-- Decorative rainbow stripe -->
 <div class="color-stripe" aria-hidden="true"></div>
 
-<!-- Who We Are -->
+<!-- Who We Are Section: two-column grid on desktop (text left, values list right).
+     .about-grid switches from 1→2 columns at the $bp-md breakpoint (768px) in vbs.scss. -->
 <section class="section" aria-labelledby="who-heading">
   <div class="container">
     <div class="about-grid">
+
+      <!-- Left column: descriptive paragraphs about the church -->
       <div class="about-text">
         <h2 id="who-heading" class="section-title">Who We Are</h2>
         <p>
@@ -39,6 +49,9 @@ permalink: /about/
         </p>
       </div>
 
+      <!-- Right column: church values list.
+           role="list" on the container and role="listitem" on each item is redundant with
+           the div elements, but adds explicit ARIA semantics for older screen readers. -->
       <div class="values-list" role="list" aria-label="Our values">
         <div class="value-item" role="listitem">
           <span class="value-icon" aria-hidden="true">❤️</span>
@@ -80,11 +93,13 @@ permalink: /about/
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- VBS Connection -->
+<!-- VBS Connection Section: three cards explaining how VBS benefits families too.
+     .highlight-band gives this section the polka-dot pattern background. -->
 <section class="section highlight-band" aria-labelledby="vbs-connect-heading">
   <div class="container">
     <div class="section-intro">
@@ -94,6 +109,7 @@ permalink: /about/
       </p>
     </div>
 
+    <!-- Three-column card grid (1→2→3 columns on small→medium→large screens) -->
     <div class="card-grid">
       <article class="card card--blue">
         <span class="card-icon" aria-hidden="true">☕</span>
@@ -116,11 +132,12 @@ permalink: /about/
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA Band: full-width gradient banner with links to register or contact -->
 <section class="cta-band" aria-labelledby="about-cta-heading">
   <div class="container">
     <h2 id="about-cta-heading">We'd Love to Meet Your Family!</h2>
     <p>Register for VBS and come see what Christ Central Buffalo is all about. No pressure, just a warm welcome.</p>
+    <!-- &amp; is the HTML entity for & — always use entities inside HTML attributes and content -->
     <a href="/vbs/" class="btn btn-primary">See VBS Details &amp; Register →</a>
     <p style="margin-top: 1.25rem;">
       <a href="/contact/" class="btn btn-outline">Get in Touch</a>
