@@ -328,12 +328,12 @@ permalink: /vbs-registration/
           '<fieldset class="reg-photo-fieldset">' +
             '<legend>Photo permissions for ' + label + '</legend>' +
             '<div class="reg-photo-row">' +
-              '<span class="reg-photo-question">May we photograph your child? <span class="req" aria-hidden="true">*</span></span>' +
+              '<span class="reg-photo-question">May we photograph/take video of your child? <span class="req" aria-hidden="true">*</span></span>' +
               '<label class="reg-radio-label"><input type="radio" name="child_photo_general_' + index + '" value="Yes" required> Yes</label>' +
               '<label class="reg-radio-label"><input type="radio" name="child_photo_general_' + index + '" value="No"> No</label>' +
             '</div>' +
             '<div class="reg-photo-row">' +
-              '<span class="reg-photo-question">May we use a photo in a presentation? <span class="req" aria-hidden="true">*</span></span>' +
+              '<span class="reg-photo-question">May we use a photo or video of your child in a presentation? <span class="req" aria-hidden="true">*</span></span>' +
               '<label class="reg-radio-label"><input type="radio" name="child_photo_presentation_' + index + '" value="Yes" required> Yes</label>' +
               '<label class="reg-radio-label"><input type="radio" name="child_photo_presentation_' + index + '" value="No"> No</label>' +
             '</div>' +
