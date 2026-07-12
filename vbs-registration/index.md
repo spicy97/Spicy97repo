@@ -251,7 +251,6 @@ permalink: /vbs-registration/
   // ── Dropdown options ──────────────────────────────────────────────
   var AGES   = [4,5,6,7,8,9,10,11,12];
   var GRADES = ['Pre-K','Kindergarten','1st','2nd','3rd','4th','5th','6th'];
-  var SHIRT_SIZES = ['Youth XS (4–5)','Youth S (6–8)','Youth M (10–12)','Youth L (14–16)','Adult S','Adult M','Adult L','Adult XL'];
 
   function optionsHtml(arr) {
     return arr.map(function(v) {
@@ -305,15 +304,6 @@ permalink: /vbs-registration/
           '<select id="' + id + '-grade" name="child_grade[]" required>' +
             '<option value="" disabled selected>Select grade</option>' +
             optionsHtml(GRADES) +
-          '</select>' +
-        '</div>' +
-
-        // Shirt size dropdown
-        '<div class="reg-field">' +
-          '<label for="' + id + '-shirt">Shirt Size <span class="req" aria-hidden="true">*</span></label>' +
-          '<select id="' + id + '-shirt" name="child_shirt[]" required>' +
-            '<option value="" disabled selected>Select a size</option>' +
-            optionsHtml(SHIRT_SIZES) +
           '</select>' +
         '</div>' +
 
@@ -453,7 +443,6 @@ permalink: /vbs-registration/
       var nameEl     = block.querySelector('[name="child_name[]"]');
       var ageEl      = block.querySelector('[name="child_age[]"]');
       var gradeEl    = block.querySelector('[name="child_grade[]"]');
-      var shirtEl    = block.querySelector('[name="child_shirt[]"]');
       var dietaryEl  = block.querySelector('[name="child_dietary[]"]');
       var photoGenEl = block.querySelector('[name^="child_photo_general_"]:checked');
       var photoPreEl = block.querySelector('[name^="child_photo_presentation_"]:checked');
@@ -462,7 +451,6 @@ permalink: /vbs-registration/
         name:               nameEl    ? nameEl.value.trim()    : '',
         age:                ageEl     ? ageEl.value.trim()     : '',
         grade:              gradeEl   ? gradeEl.value.trim()   : '',
-        shirt:              shirtEl   ? shirtEl.value.trim()   : '',
         dietary:            dietaryEl ? dietaryEl.value.trim() : '',
         photo_general:      photoGenEl ? photoGenEl.value      : '',
         photo_presentation: photoPreEl ? photoPreEl.value      : ''
